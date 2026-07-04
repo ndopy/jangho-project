@@ -5,6 +5,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { TidesModule } from './tides/tides.module';
+import { ExperiencesModule } from './experiences/experiences.module';
+import { AccommodationsModule } from './accommodations/accommodations.module';
+import { NoticesModule } from './notices/notices.module';
 
 @Module({
   imports: [
@@ -29,6 +32,9 @@ import { TidesModule } from './tides/tides.module';
     }),
     UsersModule,
     TidesModule,
+    ExperiencesModule,
+    AccommodationsModule,
+    NoticesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
