@@ -21,9 +21,21 @@
 
 npm workspaces 기반 모노레포입니다.
 
-- Backend: NestJS 11, TypeORM 0.3, PostgreSQL
+- Backend: NestJS 11, TypeORM 0.3, PostgreSQL, class-validator 기반 요청 유효성 검사
 - Frontend: Next.js 16 (App Router), React 19, Tailwind CSS 4, shadcn/ui
 - Infra: Docker Compose (로컬 PostgreSQL)
+
+## API
+
+| 리소스 | 엔드포인트 |
+| --- | --- |
+| 회원 | `POST /users` |
+| 물때 | `POST /tides`, `GET /tides` (`from`/`to` 기간 필터), `GET /tides/:date` |
+| 체험 프로그램 | `POST /experiences`, `GET /experiences`, `GET /experiences/:id` |
+| 숙박시설 | `POST /accommodations`, `GET /accommodations`, `GET /accommodations/:id` |
+| 공지사항 | `POST /notices`, `GET /notices`, `GET /notices/:id` |
+
+아직 관리자 화면이 없어서, 콘텐츠 등록은 위 `POST` 엔드포인트를 직접 호출하는 방식으로 합니다.
 
 ## 로컬 실행
 
@@ -50,7 +62,7 @@ npm run dev --workspace=frontend
 
 ## 로드맵
 
-- [ ] 1단계 — 정보 제공 (마을소개, 체험/숙박 소개, 물때정보, 공지사항) — 진행 중, 프론트엔드 레이아웃은 뼈대 완성, 백엔드 API는 아직
+- [ ] 1단계 — 정보 제공 (마을소개, 체험/숙박 소개, 물때정보, 공지사항) — 진행 중. 프론트엔드 레이아웃 뼈대와 백엔드 API(체험/숙박/공지사항/물때)는 완성, 프론트-백엔드 연동과 실제 콘텐츠 등록은 아직
 - [ ] 2단계 — 온라인 예약 (체험/숙박), 회원 연동
 - [ ] 3단계 — 체험리뷰, 갤러리, 관리자 페이지
 
