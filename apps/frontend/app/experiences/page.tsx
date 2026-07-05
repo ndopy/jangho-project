@@ -1,8 +1,8 @@
-import Link from "next/link";
-import { Clock, MapPin, Users, Wallet } from "lucide-react";
+import Link from 'next/link';
+import { Clock, MapPin, Users, Wallet } from 'lucide-react';
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getExperiences } from "@/lib/api";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { getExperiences } from '@/lib/api';
 
 export default async function ExperiencesPage() {
   const experiences = await getExperiences().catch(() => []);

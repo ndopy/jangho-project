@@ -1,24 +1,24 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
+import './globals.css';
 
-import { BottomTabBar } from "@/components/layout/bottom-tab-bar";
-import { Footer } from "@/components/layout/footer";
-import { Header } from "@/components/layout/header";
+import { BottomTabBar } from '@/components/layout/bottom-tab-bar';
+import { Footer } from '@/components/layout/footer';
+import { Header } from '@/components/layout/header';
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
-  title: "장호어촌체험마을",
-  description: "전북 고창 장호어촌체험마을 공식 홈페이지",
+  title: '장호어촌체험마을',
+  description: '전북 고창 장호어촌체험마을 공식 홈페이지',
 };
 
 export default function RootLayout({

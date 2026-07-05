@@ -1,6 +1,6 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import { MORE_LINKS } from "@/lib/nav";
+import { MORE_LINKS } from '@/lib/nav';
 
 export default function MorePage() {
   return (

@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
 
 export type PriceOption = {
   label: string;
@@ -67,7 +67,7 @@ export type MudflatForecast = {
 };
 
 async function apiGet<T>(path: string): Promise<T> {
-  const res = await fetch(`${API_BASE_URL}${path}`, { cache: "no-store" });
+  const res = await fetch(`${API_BASE_URL}${path}`, { cache: 'no-store' });
 
   if (!res.ok) {
     throw new Error(`API 요청 실패: ${path} (${res.status})`);
@@ -77,7 +77,7 @@ async function apiGet<T>(path: string): Promise<T> {
 }
 
 async function apiGetOrNull<T>(path: string): Promise<T | null> {
-  const res = await fetch(`${API_BASE_URL}${path}`, { cache: "no-store" });
+  const res = await fetch(`${API_BASE_URL}${path}`, { cache: 'no-store' });
 
   if (res.status === 404) {
     return null;
@@ -91,7 +91,7 @@ async function apiGetOrNull<T>(path: string): Promise<T | null> {
 }
 
 export function getExperiences() {
-  return apiGet<ExperienceProgram[]>("/experiences");
+  return apiGet<ExperienceProgram[]>('/experiences');
 }
 
 export function getExperienceById(id: number) {
@@ -99,7 +99,7 @@ export function getExperienceById(id: number) {
 }
 
 export function getAccommodations() {
-  return apiGet<Accommodation[]>("/accommodations");
+  return apiGet<Accommodation[]>('/accommodations');
 }
 
 export function getAccommodationById(id: number) {
@@ -107,11 +107,11 @@ export function getAccommodationById(id: number) {
 }
 
 export function getNotices() {
-  return apiGet<Notice[]>("/notices");
+  return apiGet<Notice[]>('/notices');
 }
 
 export function getMudflatForecasts() {
-  return apiGet<MudflatForecast[]>("/mudflat-forecast");
+  return apiGet<MudflatForecast[]>('/mudflat-forecast');
 }
 
 export function getMudflatForecastByDate(date: string) {

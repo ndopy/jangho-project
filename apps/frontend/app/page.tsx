@@ -1,21 +1,21 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from '@/components/ui/button';
 import {
   Card,
   CardAction,
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { getMudflatForecastByDate, getNotices } from "@/lib/api";
-import { cn } from "@/lib/utils";
+} from '@/components/ui/card';
+import { getMudflatForecastByDate, getNotices } from '@/lib/api';
+import { cn } from '@/lib/utils';
 
 const QUICK_LINKS = [
-  { label: "마을소개", href: "/about" },
-  { label: "체험 프로그램", href: "/experiences" },
-  { label: "숙박", href: "/lodging" },
-  { label: "물때정보", href: "/tides" },
+  { label: '마을소개', href: '/about' },
+  { label: '체험 프로그램', href: '/experiences' },
+  { label: '숙박', href: '/lodging' },
+  { label: '물때정보', href: '/tides' },
 ];
 
 function todayDateString() {
@@ -45,7 +45,7 @@ export default async function Home() {
 
       <a
         href="tel:063-562-9390"
-        className={cn(buttonVariants({ variant: "outline" }), "w-fit")}
+        className={cn(buttonVariants({ variant: 'outline' }), 'w-fit')}
       >
         ☎ 063-562-9390 전화 문의
       </a>
@@ -79,15 +79,15 @@ export default async function Home() {
             {todayForecast ? (
               <>
                 <p className="text-sm">
-                  체험 가능 시간:{" "}
+                  체험 가능 시간:{' '}
                   {todayForecast.experienceStartTime &&
                   todayForecast.experienceEndTime
                     ? `${todayForecast.experienceStartTime.slice(0, 5)}~${todayForecast.experienceEndTime.slice(0, 5)}`
-                    : "정보 없음"}{" "}
+                    : '정보 없음'}{' '}
                   · 지수 {todayForecast.totalIndex}
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  장호 지역 데이터가 없어 인근 곰소만{" "}
+                  장호 지역 데이터가 없어 인근 곰소만{' '}
                   {todayForecast.villageName} 기준 참고값입니다.
                 </p>
               </>
@@ -121,7 +121,7 @@ export default async function Home() {
                   >
                     <span>{notice.title}</span>
                     <span className="shrink-0 text-muted-foreground">
-                      {new Date(notice.createdAt).toLocaleDateString("ko-KR")}
+                      {new Date(notice.createdAt).toLocaleDateString('ko-KR')}
                     </span>
                   </li>
                 ))}

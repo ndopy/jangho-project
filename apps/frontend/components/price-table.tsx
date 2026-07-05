@@ -1,4 +1,4 @@
-import type { PriceOption } from "@/lib/api";
+import type { PriceOption } from '@/lib/api';
 
 export function PriceTable({ options }: { options: PriceOption[] }) {
   return (

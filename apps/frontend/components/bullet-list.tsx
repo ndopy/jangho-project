@@ -1,6 +1,6 @@
 export function BulletList({ text }: { text: string }) {
   const items = text
-    .split("\n")
+    .split('\n')
     .map((line) => line.trim())
     .filter(Boolean);
 

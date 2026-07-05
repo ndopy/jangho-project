@@ -1,4 +1,4 @@
-import { getNotices } from "@/lib/api";
+import { getNotices } from '@/lib/api';
 
 export default async function NoticesPage() {
   const notices = await getNotices().catch(() => []);
@@ -16,7 +16,7 @@ export default async function NoticesPage() {
               <div className="flex items-center justify-between gap-2">
                 <span className="font-medium">{notice.title}</span>
                 <span className="shrink-0 text-sm text-muted-foreground">
-                  {new Date(notice.createdAt).toLocaleDateString("ko-KR")}
+                  {new Date(notice.createdAt).toLocaleDateString('ko-KR')}
                 </span>
               </div>
               <p className="mt-2 text-sm text-muted-foreground">

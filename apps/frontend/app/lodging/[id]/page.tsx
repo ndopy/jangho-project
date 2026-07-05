@@ -1,18 +1,18 @@
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import { Clock, MapPin, Phone, Users, Wallet } from "lucide-react";
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { Clock, MapPin, Phone, Users, Wallet } from 'lucide-react';
 
-import { BulletList } from "@/components/bullet-list";
-import { InfoPill } from "@/components/info-pill";
-import { PriceTable } from "@/components/price-table";
-import { buttonVariants } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getAccommodationById } from "@/lib/api";
-import { cn } from "@/lib/utils";
+import { BulletList } from '@/components/bullet-list';
+import { InfoPill } from '@/components/info-pill';
+import { PriceTable } from '@/components/price-table';
+import { buttonVariants } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { getAccommodationById } from '@/lib/api';
+import { cn } from '@/lib/utils';
 
 const TYPE_LABEL: Record<string, string> = {
-  pension: "펜션",
-  minbak: "민박",
+  pension: '펜션',
+  minbak: '민박',
 };
 
 export default async function AccommodationDetailPage({
@@ -29,7 +29,7 @@ export default async function AccommodationDetailPage({
 
   const amenityList =
     accommodation.amenities
-      ?.split(",")
+      ?.split(',')
       .map((item) => item.trim())
       .filter(Boolean) ?? [];
 
@@ -63,8 +63,8 @@ export default async function AccommodationDetailPage({
         {(accommodation.capacityMin != null ||
           accommodation.capacityMax != null) && (
           <InfoPill icon={Users}>
-            {accommodation.capacityMin ?? "?"}~{accommodation.capacityMax ?? "?"}
-            인
+            {accommodation.capacityMin ?? '?'}~
+            {accommodation.capacityMax ?? '?'}인
           </InfoPill>
         )}
         {accommodation.checkInTime && (
@@ -130,7 +130,7 @@ export default async function AccommodationDetailPage({
               <a
                 href={`tel:${accommodation.contactPhone}`}
                 className={cn(
-                  buttonVariants({ variant: "outline", size: "sm" }),
+                  buttonVariants({ variant: 'outline', size: 'sm' }),
                 )}
               >
                 <Phone className="size-4" />

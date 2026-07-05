@@ -1,12 +1,12 @@
-import Link from "next/link";
-import { MapPin, Users, Wallet } from "lucide-react";
+import Link from 'next/link';
+import { MapPin, Users, Wallet } from 'lucide-react';
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getAccommodations } from "@/lib/api";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { getAccommodations } from '@/lib/api';
 
 const TYPE_LABEL: Record<string, string> = {
-  pension: "펜션",
-  minbak: "민박",
+  pension: '펜션',
+  minbak: '민박',
 };
 
 export default async function LodgingPage() {
@@ -43,8 +43,8 @@ export default async function LodgingPage() {
                       accommodation.capacityMax != null) && (
                       <span className="inline-flex items-center gap-1">
                         <Users className="size-3.5" />
-                        {accommodation.capacityMin ?? "?"}~
-                        {accommodation.capacityMax ?? "?"}인
+                        {accommodation.capacityMin ?? '?'}~
+                        {accommodation.capacityMax ?? '?'}인
                       </span>
                     )}
                   </div>

@@ -1,14 +1,14 @@
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import { Clock, MapPin, Phone, Users, Wallet } from "lucide-react";
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { Clock, MapPin, Phone, Users, Wallet } from 'lucide-react';
 
-import { BulletList } from "@/components/bullet-list";
-import { InfoPill } from "@/components/info-pill";
-import { PriceTable } from "@/components/price-table";
-import { buttonVariants } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getExperienceById } from "@/lib/api";
-import { cn } from "@/lib/utils";
+import { BulletList } from '@/components/bullet-list';
+import { InfoPill } from '@/components/info-pill';
+import { PriceTable } from '@/components/price-table';
+import { buttonVariants } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { getExperienceById } from '@/lib/api';
+import { cn } from '@/lib/utils';
 
 export default async function ExperienceDetailPage({
   params,
@@ -31,9 +31,7 @@ export default async function ExperienceDetailPage({
         ← 체험 프로그램 목록
       </Link>
 
-      <h1 className="mt-3 text-2xl font-bold md:text-3xl">
-        {experience.name}
-      </h1>
+      <h1 className="mt-3 text-2xl font-bold md:text-3xl">{experience.name}</h1>
       {experience.description && (
         <p className="mt-2 text-muted-foreground">{experience.description}</p>
       )}
@@ -91,7 +89,7 @@ export default async function ExperienceDetailPage({
               <a
                 href={`tel:${experience.contactPhone}`}
                 className={cn(
-                  buttonVariants({ variant: "outline", size: "sm" }),
+                  buttonVariants({ variant: 'outline', size: 'sm' }),
                 )}
               >
                 <Phone className="size-4" />
