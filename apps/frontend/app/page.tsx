@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { getNotices, getTideByDate } from "@/lib/api";
+import { getMudflatForecastByDate, getNotices } from "@/lib/api";
 import { cn } from "@/lib/utils";
 
 const QUICK_LINKS = [
@@ -24,8 +24,8 @@ function todayDateString() {
 
 export default async function Home() {
   const today = todayDateString();
-  const [todayTide, notices] = await Promise.all([
-    getTideByDate(today).catch(() => null),
+  const [todayForecast, notices] = await Promise.all([
+    getMudflatForecastByDate(today).catch(() => null),
     getNotices().catch(() => []),
   ]);
   const latestNotices = notices.slice(0, 3);
@@ -75,29 +75,22 @@ export default async function Home() {
               </Link>
             </CardAction>
           </CardHeader>
-          <CardContent>
-            {todayTide ? (
-              <table className="w-full text-sm [&_td]:py-1 [&_th]:py-1 [&_th]:text-left [&_th]:text-muted-foreground">
-                <thead>
-                  <tr>
-                    <th>구분</th>
-                    <th>1회</th>
-                    <th>2회</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>만조</td>
-                    <td>{todayTide.highTide1Time ?? "-"}</td>
-                    <td>{todayTide.highTide2Time ?? "-"}</td>
-                  </tr>
-                  <tr>
-                    <td>간조</td>
-                    <td>{todayTide.lowTide1Time ?? "-"}</td>
-                    <td>{todayTide.lowTide2Time ?? "-"}</td>
-                  </tr>
-                </tbody>
-              </table>
+          <CardContent className="space-y-2">
+            {todayForecast ? (
+              <>
+                <p className="text-sm">
+                  체험 가능 시간:{" "}
+                  {todayForecast.experienceStartTime &&
+                  todayForecast.experienceEndTime
+                    ? `${todayForecast.experienceStartTime.slice(0, 5)}~${todayForecast.experienceEndTime.slice(0, 5)}`
+                    : "정보 없음"}{" "}
+                  · 지수 {todayForecast.totalIndex}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  장호 지역 데이터가 없어 인근 곰소만{" "}
+                  {todayForecast.villageName} 기준 참고값입니다.
+                </p>
+              </>
             ) : (
               <p className="text-sm text-muted-foreground">
                 오늘({today}) 등록된 물때 정보가 없습니다.

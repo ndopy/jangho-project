@@ -48,17 +48,21 @@ export type Notice = {
   createdAt: string;
 };
 
-export type Tide = {
+// 국립해양조사원 갯벌체험지수 API 기반. 장호(고창)는 이 API의 지원 마을 목록에 없어서
+// 같은 곰소만 인근의 "만돌마을"(전북 부안군) 데이터를 참고용으로 대신 쓰고 있음 —
+// villageName이 항상 "만돌마을"로 나오는 게 정상이며 버그가 아님.
+export type MudflatForecast = {
   id: number;
   date: string;
-  lowTide1Time: string | null;
-  lowTide1Level: number | null;
-  lowTide2Time: string | null;
-  lowTide2Level: number | null;
-  highTide1Time: string | null;
-  highTide1Level: number | null;
-  highTide2Time: string | null;
-  highTide2Level: number | null;
+  villageName: string;
+  experienceStartTime: string | null;
+  experienceEndTime: string | null;
+  minTemperature: number | null;
+  maxTemperature: number | null;
+  minWindSpeed: number | null;
+  maxWindSpeed: number | null;
+  weather: string | null;
+  totalIndex: string;
   createdAt: string;
 };
 
@@ -106,10 +110,10 @@ export function getNotices() {
   return apiGet<Notice[]>("/notices");
 }
 
-export function getTides() {
-  return apiGet<Tide[]>("/tides");
+export function getMudflatForecasts() {
+  return apiGet<MudflatForecast[]>("/mudflat-forecast");
 }
 
-export function getTideByDate(date: string) {
-  return apiGetOrNull<Tide>(`/tides/${date}`);
+export function getMudflatForecastByDate(date: string) {
+  return apiGetOrNull<MudflatForecast>(`/mudflat-forecast/${date}`);
 }
