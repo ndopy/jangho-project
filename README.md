@@ -30,7 +30,8 @@ npm workspaces 기반 모노레포입니다.
 | 리소스 | 엔드포인트 |
 | --- | --- |
 | 회원 | `POST /users` |
-| 물때 | `POST /tides`, `GET /tides` (`from`/`to` 기간 필터), `GET /tides/:date` |
+| 물때(미사용) | `POST /tides`, `GET /tides`, `GET /tides/:date` — 정확한 조위 예측 데이터 소스를 못 찾아서 현재 비어있음 |
+| 갯벌체험지수 | `GET /mudflat-forecast`, `GET /mudflat-forecast/:date` — 장호 인근 데이터가 없어 곰소만 "만돌마을" 기준 참고값 |
 | 체험 프로그램 | `POST /experiences`, `GET /experiences`, `GET /experiences/:id` |
 | 숙박시설 | `POST /accommodations`, `GET /accommodations`, `GET /accommodations/:id` |
 | 공지사항 | `POST /notices`, `GET /notices`, `GET /notices/:id` |
@@ -51,12 +52,14 @@ docker compose up -d
 # 3. apps/backend/.env 생성 (docker-compose.yml 값과 맞추기)
 # DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_DATABASE
 # PORT=4000  (프론트엔드가 3000번을 쓰므로 백엔드는 다른 포트 사용)
+# MUDFLAT_API_KEY, MUDFLAT_REFERENCE_VILLAGE  (data.go.kr에서 발급받은 갯벌체험지수 API 키)
 
 # 4. 백엔드 실행
 npm run start:dev --workspace=backend
 
-# 5. (선택) 초기 데이터 시딩 — 실행할 때마다 이미 있는 데이터는 건너뜀
+# 5. (선택) 초기 데이터 시딩 — 실행할 때마다 이미 있는 데이터는 갱신됨
 npm run seed --workspace=backend
+npm run sync:mudflat --workspace=backend
 
 # 6. 프론트엔드 실행
 npm run dev --workspace=frontend
@@ -66,7 +69,7 @@ npm run dev --workspace=frontend
 
 ## 로드맵
 
-- [ ] 1단계 — 정보 제공 (마을소개, 체험/숙박 소개, 물때정보, 공지사항) — 진행 중. 백엔드 API, 프론트-백엔드 연동, 체험/숙박/공지사항 콘텐츠 시딩까지 완료. 물때 데이터 시딩과 마을소개·오시는길·주변관광지 콘텐츠는 아직
+- [ ] 1단계 — 정보 제공 (마을소개, 체험/숙박 소개, 물때정보, 공지사항) — 진행 중. 백엔드 API, 프론트-백엔드 연동, 체험/숙박/공지사항/갯벌체험지수 콘텐츠까지 완료. 마을소개·오시는길·주변관광지 콘텐츠는 아직
 - [ ] 2단계 — 온라인 예약 (체험/숙박), 회원 연동
 - [ ] 3단계 — 체험리뷰, 갤러리, 관리자 페이지
 
