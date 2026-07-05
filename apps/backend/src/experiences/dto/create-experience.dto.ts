@@ -1,4 +1,14 @@
-import { IsInt, IsNotEmpty, IsOptional, IsString, Min } from 'class-validator';
+import { Type } from 'class-transformer';
+import {
+  IsArray,
+  IsInt,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  Min,
+  ValidateNested,
+} from 'class-validator';
+import { PriceOptionDto } from '../../common/dto/price-option.dto';
 
 export class CreateExperienceDto {
   @IsString()
@@ -13,6 +23,16 @@ export class CreateExperienceDto {
   @IsInt()
   @Min(0)
   price?: number;
+
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => PriceOptionDto)
+  priceOptions?: PriceOptionDto[];
+
+  @IsOptional()
+  @IsString()
+  notes?: string;
 
   @IsOptional()
   @IsInt()
