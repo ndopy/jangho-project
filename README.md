@@ -35,7 +35,7 @@ npm workspaces 기반 모노레포입니다.
 | 숙박시설 | `POST /accommodations`, `GET /accommodations`, `GET /accommodations/:id` |
 | 공지사항 | `POST /notices`, `GET /notices`, `GET /notices/:id` |
 
-아직 관리자 화면이 없어서, 콘텐츠 등록은 위 `POST` 엔드포인트를 직접 호출하는 방식으로 합니다.
+아직 관리자 화면이 없어서, 콘텐츠 등록은 위 `POST` 엔드포인트를 직접 호출하거나 아래 시드 스크립트로 합니다.
 
 ## 로컬 실행
 
@@ -50,19 +50,23 @@ docker compose up -d
 
 # 3. apps/backend/.env 생성 (docker-compose.yml 값과 맞추기)
 # DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_DATABASE
+# PORT=4000  (프론트엔드가 3000번을 쓰므로 백엔드는 다른 포트 사용)
 
 # 4. 백엔드 실행
 npm run start:dev --workspace=backend
 
-# 5. 프론트엔드 실행
+# 5. (선택) 초기 데이터 시딩 — 실행할 때마다 이미 있는 데이터는 건너뜀
+npm run seed --workspace=backend
+
+# 6. 프론트엔드 실행
 npm run dev --workspace=frontend
 ```
 
-프론트엔드는 기본적으로 <http://localhost:3000> 에서 열립니다.
+프론트엔드는 기본적으로 <http://localhost:3000>, 백엔드는 <http://localhost:4000> 에서 열립니다. 프론트엔드가 백엔드를 호출하는 주소는 `NEXT_PUBLIC_API_URL` 환경변수로 바꿀 수 있고, 기본값은 `http://localhost:4000`입니다.
 
 ## 로드맵
 
-- [ ] 1단계 — 정보 제공 (마을소개, 체험/숙박 소개, 물때정보, 공지사항) — 진행 중. 프론트엔드 레이아웃 뼈대와 백엔드 API(체험/숙박/공지사항/물때)는 완성, 프론트-백엔드 연동과 실제 콘텐츠 등록은 아직
+- [ ] 1단계 — 정보 제공 (마을소개, 체험/숙박 소개, 물때정보, 공지사항) — 진행 중. 백엔드 API, 프론트-백엔드 연동, 체험/숙박/공지사항 콘텐츠 시딩까지 완료. 물때 데이터 시딩과 마을소개·오시는길·주변관광지 콘텐츠는 아직
 - [ ] 2단계 — 온라인 예약 (체험/숙박), 회원 연동
 - [ ] 3단계 — 체험리뷰, 갤러리, 관리자 페이지
 
