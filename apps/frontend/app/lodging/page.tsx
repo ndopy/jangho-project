@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { MapPin, Users, Wallet } from "lucide-react";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAccommodations } from "@/lib/api";
 
@@ -20,26 +23,40 @@ export default async function LodgingPage() {
       ) : (
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {accommodations.map((accommodation) => (
-            <Card key={accommodation.id}>
-              <CardHeader>
-                <CardTitle>{accommodation.name}</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-1 text-sm text-muted-foreground">
-                <p>
-                  {TYPE_LABEL[accommodation.type] ?? accommodation.type}
-                  {(accommodation.capacityMin != null ||
-                    accommodation.capacityMax != null) &&
-                    ` · ${accommodation.capacityMin ?? "?"}~${accommodation.capacityMax ?? "?"}인`}
-                </p>
-                {accommodation.location && <p>{accommodation.location}</p>}
-                {accommodation.contactPhone && (
-                  <p>☎ {accommodation.contactPhone}</p>
-                )}
-                {accommodation.price != null && (
-                  <p>{accommodation.price.toLocaleString()}원</p>
-                )}
-              </CardContent>
-            </Card>
+            <Link key={accommodation.id} href={`/lodging/${accommodation.id}`}>
+              <Card className="h-full transition-colors hover:bg-muted">
+                <CardHeader>
+                  <CardTitle>{accommodation.name}</CardTitle>
+                  <p className="text-sm text-muted-foreground">
+                    {TYPE_LABEL[accommodation.type] ?? accommodation.type}
+                  </p>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
+                    {accommodation.price != null && (
+                      <span className="inline-flex items-center gap-1">
+                        <Wallet className="size-3.5" />
+                        {accommodation.price.toLocaleString()}원부터
+                      </span>
+                    )}
+                    {(accommodation.capacityMin != null ||
+                      accommodation.capacityMax != null) && (
+                      <span className="inline-flex items-center gap-1">
+                        <Users className="size-3.5" />
+                        {accommodation.capacityMin ?? "?"}~
+                        {accommodation.capacityMax ?? "?"}인
+                      </span>
+                    )}
+                  </div>
+                  {accommodation.location && (
+                    <p className="flex items-center gap-1 text-sm text-muted-foreground">
+                      <MapPin className="size-3.5 shrink-0" />
+                      {accommodation.location}
+                    </p>
+                  )}
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
       )}
