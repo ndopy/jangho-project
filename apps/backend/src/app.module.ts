@@ -8,6 +8,7 @@ import { TidesModule } from './tides/tides.module';
 import { ExperiencesModule } from './experiences/experiences.module';
 import { AccommodationsModule } from './accommodations/accommodations.module';
 import { NoticesModule } from './notices/notices.module';
+import { MudflatForecastModule } from './mudflat-forecast/mudflat-forecast.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { NoticesModule } from './notices/notices.module';
     ExperiencesModule,
     AccommodationsModule,
     NoticesModule,
+    MudflatForecastModule,
   ],
   controllers: [AppController],
   providers: [AppService],
