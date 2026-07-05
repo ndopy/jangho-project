@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { getNotices, getTideByDate } from "@/lib/api";
 import { cn } from "@/lib/utils";
 
 const QUICK_LINKS = [
@@ -17,7 +18,18 @@ const QUICK_LINKS = [
   { label: "물때정보", href: "/tides" },
 ];
 
-export default function Home() {
+function todayDateString() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+export default async function Home() {
+  const today = todayDateString();
+  const [todayTide, notices] = await Promise.all([
+    getTideByDate(today).catch(() => null),
+    getNotices().catch(() => []),
+  ]);
+  const latestNotices = notices.slice(0, 3);
+
   return (
     <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-8 md:px-6 md:py-12">
       <section className="flex h-40 items-end rounded-lg bg-muted p-4 md:h-56">
@@ -53,7 +65,7 @@ export default function Home() {
       <section className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>오늘의 물때</CardTitle>
+            <CardTitle>오늘의 물때 · {today}</CardTitle>
             <CardAction>
               <Link
                 href="/tides"
@@ -64,9 +76,33 @@ export default function Home() {
             </CardAction>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-muted-foreground">
-              물때 데이터 연동 예정
-            </p>
+            {todayTide ? (
+              <table className="w-full text-sm [&_td]:py-1 [&_th]:py-1 [&_th]:text-left [&_th]:text-muted-foreground">
+                <thead>
+                  <tr>
+                    <th>구분</th>
+                    <th>1회</th>
+                    <th>2회</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>만조</td>
+                    <td>{todayTide.highTide1Time ?? "-"}</td>
+                    <td>{todayTide.highTide2Time ?? "-"}</td>
+                  </tr>
+                  <tr>
+                    <td>간조</td>
+                    <td>{todayTide.lowTide1Time ?? "-"}</td>
+                    <td>{todayTide.lowTide2Time ?? "-"}</td>
+                  </tr>
+                </tbody>
+              </table>
+            ) : (
+              <p className="text-sm text-muted-foreground">
+                오늘({today}) 등록된 물때 정보가 없습니다.
+              </p>
+            )}
           </CardContent>
         </Card>
 
@@ -83,9 +119,25 @@ export default function Home() {
             </CardAction>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-muted-foreground">
-              등록된 공지가 없습니다
-            </p>
+            {latestNotices.length > 0 ? (
+              <ul className="space-y-2 text-sm">
+                {latestNotices.map((notice) => (
+                  <li
+                    key={notice.id}
+                    className="flex items-center justify-between gap-2"
+                  >
+                    <span>{notice.title}</span>
+                    <span className="shrink-0 text-muted-foreground">
+                      {new Date(notice.createdAt).toLocaleDateString("ko-KR")}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-sm text-muted-foreground">
+                등록된 공지가 없습니다
+              </p>
+            )}
           </CardContent>
         </Card>
       </section>
