@@ -5,6 +5,7 @@ import { Clock, MapPin, Phone, Users, Wallet } from 'lucide-react';
 import { BulletList } from '@/components/bullet-list';
 import { InfoPill } from '@/components/info-pill';
 import { PriceTable } from '@/components/price-table';
+import { ReservationForm } from '@/components/reservation-form';
 import { buttonVariants } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { getExperienceById } from '@/lib/api';
@@ -75,6 +76,19 @@ export default async function ExperienceDetailPage({
           </CardContent>
         </Card>
       )}
+
+      <Card className="mt-4">
+        <CardHeader>
+          <CardTitle className="text-base">예약 신청</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ReservationForm
+            itemType="experience"
+            itemId={experience.id}
+            itemName={experience.name}
+          />
+        </CardContent>
+      </Card>
 
       {(experience.location || experience.contactPhone) && (
         <Card className="mt-4">

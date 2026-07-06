@@ -66,6 +66,24 @@ export type MudflatForecast = {
   createdAt: string;
 };
 
+// "예약 신청서" 수준의 기능. 날짜별 정원/중복예약 체크 같은 재고 관리는 하지 않음 —
+// 관리자 화면이 아직 없어 신청 내용은 DB에서 직접 확인해 전화로 확정하는 방식.
+export type CreateReservationInput = {
+  itemType: 'experience' | 'accommodation';
+  itemId: number;
+  itemName: string;
+  desiredDate: string;
+  peopleCount: number;
+  applicantName: string;
+  applicantPhone: string;
+  message?: string;
+};
+
+export type Reservation = CreateReservationInput & {
+  id: number;
+  createdAt: string;
+};
+
 async function apiGet<T>(path: string): Promise<T> {
   const res = await fetch(`${API_BASE_URL}${path}`, { cache: 'no-store' });
 
@@ -74,6 +92,23 @@ async function apiGet<T>(path: string): Promise<T> {
   }
 
   return res.json() as Promise<T>;
+}
+
+async function apiPost<TInput, TOutput>(
+  path: string,
+  body: TInput,
+): Promise<TOutput> {
+  const res = await fetch(`${API_BASE_URL}${path}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+
+  if (!res.ok) {
+    throw new Error(`API 요청 실패: ${path} (${res.status})`);
+  }
+
+  return res.json() as Promise<TOutput>;
 }
 
 async function apiGetOrNull<T>(path: string): Promise<T | null> {
@@ -112,6 +147,10 @@ export function getNotices() {
 
 export function getNoticeById(id: number) {
   return apiGetOrNull<Notice>(`/notices/${id}`);
+}
+
+export function createReservation(input: CreateReservationInput) {
+  return apiPost<CreateReservationInput, Reservation>('/reservations', input);
 }
 
 export function getMudflatForecasts() {
