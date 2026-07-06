@@ -110,6 +110,10 @@ export function getNotices() {
   return apiGet<Notice[]>('/notices');
 }
 
+export function getNoticeById(id: number) {
+  return apiGetOrNull<Notice>(`/notices/${id}`);
+}
+
 export function getMudflatForecasts() {
   return apiGet<MudflatForecast[]>('/mudflat-forecast');
 }

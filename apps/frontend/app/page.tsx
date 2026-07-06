@@ -118,14 +118,16 @@ export default async function Home() {
             {latestNotices.length > 0 ? (
               <ul className="space-y-2 text-sm">
                 {latestNotices.map((notice) => (
-                  <li
-                    key={notice.id}
-                    className="flex items-center justify-between gap-2"
-                  >
-                    <span>{notice.title}</span>
-                    <span className="shrink-0 text-muted-foreground">
-                      {new Date(notice.createdAt).toLocaleDateString('ko-KR')}
-                    </span>
+                  <li key={notice.id}>
+                    <Link
+                      href={`/notices/${notice.id}`}
+                      className="flex items-center justify-between gap-2 hover:text-primary"
+                    >
+                      <span>{notice.title}</span>
+                      <span className="shrink-0 text-muted-foreground">
+                        {new Date(notice.createdAt).toLocaleDateString('ko-KR')}
+                      </span>
+                    </Link>
                   </li>
                 ))}
               </ul>

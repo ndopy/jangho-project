@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { getNotices } from '@/lib/api';
 
 export default async function NoticesPage() {
@@ -12,16 +14,16 @@ export default async function NoticesPage() {
       ) : (
         <ul className="mt-6 divide-y divide-border">
           {notices.map((notice) => (
-            <li key={notice.id} className="py-4">
-              <div className="flex items-center justify-between gap-2">
+            <li key={notice.id}>
+              <Link
+                href={`/notices/${notice.id}`}
+                className="flex items-center justify-between gap-2 py-4 transition-colors hover:text-primary"
+              >
                 <span className="font-medium">{notice.title}</span>
                 <span className="shrink-0 text-sm text-muted-foreground">
                   {new Date(notice.createdAt).toLocaleDateString('ko-KR')}
                 </span>
-              </div>
-              <p className="mt-2 text-sm text-muted-foreground">
-                {notice.content}
-              </p>
+              </Link>
             </li>
           ))}
         </ul>
