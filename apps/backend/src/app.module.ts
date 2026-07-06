@@ -9,6 +9,7 @@ import { ExperiencesModule } from './experiences/experiences.module';
 import { AccommodationsModule } from './accommodations/accommodations.module';
 import { NoticesModule } from './notices/notices.module';
 import { MudflatForecastModule } from './mudflat-forecast/mudflat-forecast.module';
+import { ReservationsModule } from './reservations/reservations.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { MudflatForecastModule } from './mudflat-forecast/mudflat-forecast.modul
     AccommodationsModule,
     NoticesModule,
     MudflatForecastModule,
+    ReservationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
