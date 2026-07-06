@@ -6,6 +6,7 @@
 ## 진행 상태
 
 ### 완료
+
 - [x] 개발 환경 세팅 (Node, Docker, Postgres)
 - [x] 백엔드 CRUD 모듈: users / experiences / accommodations / notices / mudflat-forecast
 - [x] `tides` 엔티티는 dormant 처리, 물때 관련 실제 기능은 `mudflat-forecast`(갯벌체험지수 API)로 대체
@@ -17,21 +18,26 @@
 - [x] 비주얼 컬러 테마 확정: "물빛" 계열 중 **B2. 물안개** — `apps/frontend/app/globals.css`에 적용 완료
 
 ### 디자인 마무리
+
 - [x] 한글 폰트 Pretendard 적용 (`pretendard` npm 패키지 셀프호스팅, `next/font/local`로 `--font-sans`에 연결. 기존 `--font-sans: var(--font-sans)` 자기참조 버그도 같이 해결됨)
 - [x] 새 테마 기준으로 실제 화면 세부 재점검 — 색상 하드코딩 없이 전부 토큰 기반이라 색 누락은 없었음. 홈 히어로에 그라디언트·강조색 eyebrow 추가, 헤더/하단탭바 active 상태에 강조색(`text-primary`) 적용
 
 ### 콘텐츠
-- [ ] `/about`, `/about/directions`, `/about/nearby` 정적 placeholder → 실제 콘텐츠로 교체
-- [ ] 공지사항 상세 페이지 필요 여부 결정 (현재 목록만 있고 상세 라우트 없음)
+
+- [x] `/about`, `/about/directions`, `/about/nearby` 정적 placeholder → 실제 콘텐츠로 교체. 원본 공식 사이트(cms.seantour.com/JB003)엔 이 세 페이지에 실제 콘텐츠가 없어서(이미지만 있거나 게시물 0~1개), 웹검색으로 확인한 사실(명사십리 해변·구시포/동호해수욕장·선운사·고창읍성·고인돌 유적·학원농장 등)을 바탕으로 새로 작성 — 사용자 검토·수정 필요할 수 있음
+- [x] 공지사항 상세 페이지 추가 (`/notices/[id]`), 목록·홈 화면에서 링크 연결
 
 ### 백엔드 기술 부채
-- [ ] 유닛 테스트 전무 (`src/**/*.spec.ts` 없음, 기본 e2e 스펙만 존재) — 서비스 레이어부터 시작 고려
+
+- [x] 유닛 테스트 도입 — 6개 서비스(users/experiences/accommodations/notices/mudflat-forecast/tides) 전체에 서비스 레이어 단위 테스트 추가. `common/testing/mock-repository.ts`로 TypeORM Repository 목(mock)을 공유. 컨트롤러/e2e 테스트는 아직 없음
 - [ ] `npm run sync:mudflat` 자동화는 의도적으로 보류 중 (백엔드가 상시 서버에 배포되기 전까지는 수동 실행)
 
 ### 배포
+
 - [ ] 배포 방식/호스팅 자체가 아직 논의된 적 없음 — 프론트/백엔드/DB를 어디에 올릴지부터 결정 필요
 
 ## Phase 2 (지금 착수하지 않음 — 순서상 나중)
+
 - [ ] 온라인 예약 시스템 (`Reservation` 엔티티 등)
 - [ ] 관리자 패널
 - [ ] 체험 후기 / 갤러리
