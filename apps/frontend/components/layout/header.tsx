@@ -26,7 +26,7 @@ export function Header() {
                 href={item.href}
                 className={cn(
                   'transition-colors hover:text-foreground',
-                  active && 'font-semibold text-foreground',
+                  active && 'font-semibold text-primary',
                 )}
               >
                 {item.label}

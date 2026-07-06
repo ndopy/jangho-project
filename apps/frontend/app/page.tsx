@@ -32,13 +32,16 @@ export default async function Home() {
 
   return (
     <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-8 md:px-6 md:py-12">
-      <section className="flex h-40 items-end rounded-lg bg-muted p-4 md:h-56">
+      <section className="flex h-44 items-end rounded-lg bg-linear-to-br from-secondary to-muted p-4 md:h-64 md:p-6">
         <div>
-          <h1 className="text-xl font-bold md:text-3xl">
+          <p className="text-xs font-semibold tracking-wide text-primary uppercase">
+            전북 고창 · 명사십리
+          </p>
+          <h1 className="mt-1 text-xl font-bold md:text-3xl">
             명사십리 갯벌, 진짜 갯마을 하루
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            전북 고창 장호어촌체험마을
+            물때 맞춰 나서는 첫 배 — 장호어촌체험마을
           </p>
         </div>
       </section>

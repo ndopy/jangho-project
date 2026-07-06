@@ -1,14 +1,17 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 
 import { BottomTabBar } from '@/components/layout/bottom-tab-bar';
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+const pretendard = localFont({
+  src: '../../../node_modules/pretendard/dist/web/variable/woff2/PretendardVariable.woff2',
+  variable: '--font-sans',
+  weight: '45 920',
+  display: 'swap',
 });
 
 const geistMono = Geist_Mono({
@@ -29,7 +32,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${pretendard.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
         <Header />

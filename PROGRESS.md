@@ -17,8 +17,8 @@
 - [x] 비주얼 컬러 테마 확정: "물빛" 계열 중 **B2. 물안개** — `apps/frontend/app/globals.css`에 적용 완료
 
 ### 디자인 마무리
-- [ ] 한글 폰트 Pretendard 적용 (현재 Geist 폴백 상태 — 시안 단계에서 "실제 구현 시 Pretendard 예정"이라고만 해두고 아직 미적용)
-- [ ] 새 테마 기준으로 실제 화면 세부 재점검 (버튼/카드 hover, 여백 등 — 색상 토큰만 바꾼 상태라 컴포넌트별 미세조정 필요할 수 있음)
+- [x] 한글 폰트 Pretendard 적용 (`pretendard` npm 패키지 셀프호스팅, `next/font/local`로 `--font-sans`에 연결. 기존 `--font-sans: var(--font-sans)` 자기참조 버그도 같이 해결됨)
+- [x] 새 테마 기준으로 실제 화면 세부 재점검 — 색상 하드코딩 없이 전부 토큰 기반이라 색 누락은 없었음. 홈 히어로에 그라디언트·강조색 eyebrow 추가, 헤더/하단탭바 active 상태에 강조색(`text-primary`) 적용
 
 ### 콘텐츠
 - [ ] `/about`, `/about/directions`, `/about/nearby` 정적 placeholder → 실제 콘텐츠로 교체

@@ -20,7 +20,7 @@ export function BottomTabBar() {
             href={item.href}
             className={cn(
               'flex flex-1 flex-col items-center gap-1 py-2 text-[11px] text-muted-foreground',
-              active && 'font-medium text-foreground',
+              active && 'font-medium text-primary',
             )}
           >
             <Icon className="size-5" strokeWidth={active ? 2.4 : 1.8} />
