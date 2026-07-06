@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+@PROGRESS.md
+
+`PROGRESS.md`는 이 프로젝트의 로드맵 겸 남은 작업 목록. 작업을 완료하면 해당 항목을 체크하고, 새로 파악되는 남은 작업은 그 파일에 추가할 것.
+
 ## 저장소 구조
 
 npm workspaces 기반 모노레포 (`apps/*`):
