@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 420" font-family="'Segoe UI', Arial, sans-serif">
+  <rect width="860" height="420" fill="#ffffff"/>
+
+  <text x="20" y="34" font-size="18" font-weight="700" fill="#0f172a">지금 상황: 예약 신청은 쌓이는데, 볼 화면이 없음</text>
+
+  <!-- Row 1: current state -->
+  <g>
+    <rect x="20" y="60" width="150" height="60" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="95" y="86" font-size="14" fill="#1e3a8a" text-anchor="middle">이용자</text>
+    <text x="95" y="106" font-size="13" fill="#1e3a8a" text-anchor="middle">예약 신청서 제출</text>
+
+    <line x1="170" y1="90" x2="228" y2="90" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="199" y="80" font-size="12" fill="#475569" text-anchor="middle">POST</text>
+
+    <rect x="230" y="60" width="150" height="60" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="305" y="86" font-size="14" fill="#334155" text-anchor="middle">데이터베이스</text>
+    <text x="305" y="106" font-size="13" fill="#334155" text-anchor="middle">신청 내역 저장됨</text>
+
+    <line x1="380" y1="90" x2="438" y2="90" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrowRed)"/>
+
+    <rect x="440" y="55" width="220" height="70" rx="8" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
+    <text x="550" y="80" font-size="14" fill="#7f1d1d" text-anchor="middle">관리자</text>
+    <text x="550" y="99" font-size="13" fill="#7f1d1d" text-anchor="middle">볼 화면이 없어서</text>
+    <text x="550" y="115" font-size="13" fill="#7f1d1d" text-anchor="middle">DB를 직접 조회해야 함</text>
+  </g>
+
+  <line x1="20" y1="150" x2="840" y2="150" stroke="#e2e8f0" stroke-width="1"/>
+
+  <text x="20" y="180" font-size="16" font-weight="700" fill="#0f172a">그래서 3단계로 나눠서 해결</text>
+
+  <!-- Roadmap -->
+  <g>
+    <rect x="20" y="200" width="250" height="180" rx="10" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+    <text x="145" y="228" font-size="14" font-weight="700" fill="#065f46" text-anchor="middle">1단계 (이 문서)</text>
+    <text x="145" y="252" font-size="13" fill="#065f46" text-anchor="middle">인증 +</text>
+    <text x="145" y="270" font-size="13" fill="#065f46" text-anchor="middle">예약 신청 목록·상세</text>
+    <text x="145" y="288" font-size="13" fill="#065f46" text-anchor="middle">조회 (읽기 전용)</text>
+    <rect x="45" y="308" width="200" height="26" rx="6" fill="#10b981"/>
+    <text x="145" y="325" font-size="12" fill="#ffffff" text-anchor="middle">지금 여기</text>
+
+    <line x1="270" y1="290" x2="318" y2="290" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <rect x="320" y="200" width="250" height="180" rx="10" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="445" y="228" font-size="14" font-weight="700" fill="#334155" text-anchor="middle">2단계</text>
+    <text x="445" y="252" font-size="13" fill="#334155" text-anchor="middle">예약 상태 변경</text>
+    <text x="445" y="270" font-size="13" fill="#334155" text-anchor="middle">(확인·보류) +</text>
+    <text x="445" y="288" font-size="13" fill="#334155" text-anchor="middle">기존 쓰기 API 보호</text>
+
+    <line x1="570" y1="290" x2="618" y2="290" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <rect x="620" y="200" width="220" height="180" rx="10" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="730" y="228" font-size="14" font-weight="700" fill="#334155" text-anchor="middle">3단계</text>
+    <text x="730" y="252" font-size="13" fill="#334155" text-anchor="middle">체험·숙박·공지</text>
+    <text x="730" y="270" font-size="13" fill="#334155" text-anchor="middle">콘텐츠 CRUD</text>
+    <text x="730" y="288" font-size="13" fill="#334155" text-anchor="middle">관리 화면</text>
+  </g>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#64748b"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#ef4444"/>
+    </marker>
+  </defs>
+</svg>

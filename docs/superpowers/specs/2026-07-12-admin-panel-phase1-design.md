@@ -2,6 +2,8 @@
 
 ## 배경 / 문제
 
+![현재 상황과 3단계 로드맵](./2026-07-12-admin-panel-phase1-design/00-background.svg)
+
 예약 신청(`reservations` 모듈)은 `POST /reservations`만 존재해서 신청은 쌓이지만 확인할 화면이 없다. 현재는 DB를 직접 조회해야 한다. 관리자 패널 전체 범위(예약 관리 + 체험/숙박/공지 콘텐츠 관리)는 한 번에 설계·구현하기엔 크므로 3단계로 나눈다.
 
 - **1단계 (이 문서)**: 인증 + 예약 신청 목록/상세 조회 (읽기 전용)
@@ -9,6 +11,8 @@
 - 3단계: 체험/숙박/공지 콘텐츠 CRUD 관리 UI
 
 ## 사용자 시나리오
+
+![사용자 시나리오 흐름도](./2026-07-12-admin-panel-phase1-design/01-user-scenario.svg)
 
 이 기능을 실제로 사용하면 이런 순서로 진행됩니다.
 
@@ -26,6 +30,8 @@
 
 ## 프로젝트 구조 결정
 
+![프로젝트 구조 비교](./2026-07-12-admin-panel-phase1-design/02-project-structure.svg)
+
 관리자 패널은 별도 프로젝트로 분리하지 않고 기존 Next.js 프런트엔드(`apps/frontend`) 안에 `/admin` 라우트 세그먼트로 구현한다. 미니 프로젝트 규모(단일 관리자, 배포처 미정)에서 별도 프로젝트는 인증·배포·의존성 오버헤드만 늘어난다. 관리자 인증 요구가 크게 달라지거나(SSO 등) 배포 주기를 분리하고 싶어지면 그때 분리한다.
 
 ## 사용자 / 범위
@@ -34,6 +40,8 @@
 - 1단계는 예약 신청 **조회만** 한다. 상태 변경, 콘텐츠 관리는 2·3단계로 미룬다.
 
 ## 인증 아키텍처
+
+![인증 아키텍처 시퀀스](./2026-07-12-admin-panel-phase1-design/03-auth-architecture.svg)
 
 두 개의 분리된 시크릿을 사용한다.
 
@@ -54,6 +62,8 @@
 
 ## 백엔드 설계 (`apps/backend`)
 
+![백엔드 요청 처리 흐름](./2026-07-12-admin-panel-phase1-design/04-backend-design.svg)
+
 `reservations` 모듈에 추가:
 
 - `GET /reservations` — 목록, `createdAt DESC` 정렬
@@ -73,6 +83,8 @@
 
 ## 프런트엔드 설계 (`apps/frontend`)
 
+![프런트엔드 신규 파일 구조](./2026-07-12-admin-panel-phase1-design/05-frontend-design.svg)
+
 - `middleware.ts` (신규, 루트) — `/admin/*`(로그인 페이지 제외) 요청마다 쿠키 검증, 실패 시 `/admin/login` 리다이렉트
 - `lib/session.ts` (신규) — `jose` 기반 쿠키 서명/검증 헬퍼. `middleware.ts`와 로그인/로그아웃 Server Action이 공유
 - `app/admin/login/page.tsx` — 비밀번호 입력 폼
@@ -89,12 +101,16 @@
 
 ## 데이터 흐름
 
+![데이터 흐름 4단계](./2026-07-12-admin-panel-phase1-design/06-data-flow.svg)
+
 1. 관리자가 `/admin/reservations` 접근 → `middleware.ts`가 쿠키 확인 → 없으면 `/admin/login`으로 리다이렉트
 2. 비밀번호 제출 → Server Action이 `ADMIN_PASSWORD`와 비교 → 일치 시 서명 쿠키 발급 → `/admin/reservations`로 리다이렉트
 3. `middleware.ts`가 쿠키 검증 통과 → 목록 페이지(서버 컴포넌트)가 `getReservations()` 호출 → 백엔드 `GET /reservations`(`x-admin-key` 헤더 포함) → `AdminKeyGuard` 통과 → `createdAt DESC`로 조회 → 목록 렌더
 4. 행 클릭 → `/admin/reservations/[id]` → `getReservationById(id)` → 백엔드 `GET /reservations/:id` → 없으면 404 → `notFound()`
 
 ## 에러 처리
+
+![에러 처리 4가지 분기](./2026-07-12-admin-panel-phase1-design/07-error-handling.svg)
 
 - 비밀번호 불일치 → 로그인 폼에 에러 문구 표시, 쿠키 발급 안 함
 - 쿠키 만료/위조 → `middleware.ts`가 로그인으로 리다이렉트

@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 320" font-family="'Segoe UI', Arial, sans-serif">
+  <rect width="840" height="320" fill="#ffffff"/>
+
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#334155"/>
+    </marker>
+    <marker id="ared" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#ef4444"/>
+    </marker>
+  </defs>
+
+  <text x="20" y="30" font-size="14" fill="#334155">GET /reservations, GET /reservations/:id 요청</text>
+  <line x1="20" y1="42" x2="20" y2="90" stroke="#334155" stroke-width="0"/>
+
+  <rect x="20" y="70" width="120" height="60" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="80" y="96" font-size="13" fill="#1e3a8a" text-anchor="middle">요청</text>
+  <text x="80" y="114" font-size="12" fill="#1e3a8a" text-anchor="middle">x-admin-key 헤더</text>
+
+  <line x1="140" y1="100" x2="188" y2="100" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+
+  <rect x="190" y="60" width="180" height="80" rx="8" fill="#fff7ed" stroke="#d97706" stroke-width="1.5"/>
+  <text x="280" y="88" font-size="13" fill="#7c2d12" text-anchor="middle">AdminKeyGuard</text>
+  <text x="280" y="106" font-size="12" fill="#7c2d12" text-anchor="middle">ADMIN_API_KEY와</text>
+  <text x="280" y="122" font-size="12" fill="#7c2d12" text-anchor="middle">헤더 값 비교</text>
+
+  <!-- pass -->
+  <line x1="370" y1="90" x2="418" y2="90" stroke="#10b981" stroke-width="2" marker-end="url(#a)"/>
+  <text x="394" y="80" font-size="11" fill="#065f46" text-anchor="middle">일치</text>
+
+  <rect x="420" y="60" width="170" height="60" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="505" y="86" font-size="13" fill="#065f46" text-anchor="middle">ReservationsController</text>
+  <text x="505" y="104" font-size="12" fill="#065f46" text-anchor="middle">findAll / findOne 호출</text>
+
+  <line x1="590" y1="90" x2="638" y2="90" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+
+  <rect x="640" y="60" width="170" height="60" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="725" y="86" font-size="13" fill="#334155" text-anchor="middle">ReservationsService</text>
+  <text x="725" y="104" font-size="12" fill="#334155" text-anchor="middle">DB 조회</text>
+
+  <line x1="725" y1="120" x2="725" y2="168" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+
+  <rect x="640" y="170" width="170" height="60" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="725" y="196" font-size="13" fill="#334155" text-anchor="middle">데이터베이스</text>
+  <text x="725" y="214" font-size="12" fill="#334155" text-anchor="middle">reservations 테이블</text>
+
+  <line x1="640" y1="200" x2="595" y2="200" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+  <text x="617" y="190" font-size="11" fill="#475569" text-anchor="middle"></text>
+
+  <rect x="420" y="170" width="170" height="60" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="505" y="196" font-size="12" fill="#065f46" text-anchor="middle">createdAt DESC로</text>
+  <text x="505" y="214" font-size="12" fill="#065f46" text-anchor="middle">정렬된 목록/상세 반환</text>
+
+  <!-- reject -->
+  <line x1="280" y1="140" x2="280" y2="188" stroke="#ef4444" stroke-width="2" marker-end="url(#ared)"/>
+  <text x="310" y="168" font-size="11" fill="#b91c1c">불일치</text>
+
+  <rect x="190" y="190" width="180" height="60" rx="8" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="280" y="216" font-size="13" fill="#7f1d1d" text-anchor="middle">요청 거부</text>
+  <text x="280" y="234" font-size="12" fill="#7f1d1d" text-anchor="middle">컨트롤러 실행 안 됨</text>
+
+  <text x="20" y="280" font-size="12" fill="#64748b">기존 POST /reservations(신청서 제출용, 공개 API)는 이 Guard를 붙이지 않고 그대로 둠</text>
+  <text x="20" y="300" font-size="12" fill="#64748b">AdminKeyGuard는 src/common/에 둬서 2단계(PATCH 등)에서도 재사용</text>
+</svg>

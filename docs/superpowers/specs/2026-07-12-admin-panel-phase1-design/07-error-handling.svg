@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" font-family="'Segoe UI', Arial, sans-serif">
+  <rect width="900" height="420" fill="#ffffff"/>
+
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#334155"/>
+    </marker>
+  </defs>
+
+  <rect x="330" y="16" width="240" height="46" rx="8" fill="#f1f5f9" stroke="#475569" stroke-width="1.5"/>
+  <text x="450" y="44" font-size="13" fill="#1e293b" text-anchor="middle">잘못되거나 예외적인 상황이 생기면</text>
+
+  <!-- branch lines -->
+  <line x1="400" y1="62" x2="120" y2="118" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="430" y1="62" x2="340" y2="118" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="470" y1="62" x2="560" y2="118" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="500" y1="62" x2="780" y2="118" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- branch 1 -->
+  <rect x="20" y="120" width="200" height="56" rx="8" fill="#fff7ed" stroke="#d97706" stroke-width="1.5"/>
+  <text x="120" y="145" font-size="12" fill="#7c2d12" text-anchor="middle">로그인 페이지에서</text>
+  <text x="120" y="163" font-size="12" fill="#7c2d12" text-anchor="middle">비밀번호가 틀렸을 때</text>
+  <line x1="120" y1="176" x2="120" y2="204" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+  <rect x="20" y="206" width="200" height="80" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="120" y="232" font-size="12" fill="#334155" text-anchor="middle">로그인 폼에</text>
+  <text x="120" y="250" font-size="12" fill="#334155" text-anchor="middle">"비밀번호가 틀렸습니다"</text>
+  <text x="120" y="268" font-size="12" fill="#334155" text-anchor="middle">표시, 쿠키는 발급 안 함</text>
+
+  <!-- branch 2 -->
+  <rect x="240" y="120" width="200" height="56" rx="8" fill="#fff7ed" stroke="#d97706" stroke-width="1.5"/>
+  <text x="340" y="145" font-size="12" fill="#7c2d12" text-anchor="middle">저장된 로그인 정보가</text>
+  <text x="340" y="163" font-size="12" fill="#7c2d12" text-anchor="middle">기간이 지났거나 위조됐을 때</text>
+  <line x1="340" y1="176" x2="340" y2="204" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+  <rect x="240" y="206" width="200" height="80" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="340" y="238" font-size="12" fill="#334155" text-anchor="middle">middleware.ts가</text>
+  <text x="340" y="256" font-size="12" fill="#334155" text-anchor="middle">자동으로 로그인 페이지로</text>
+  <text x="340" y="274" font-size="12" fill="#334155" text-anchor="middle">돌려보냄</text>
+
+  <!-- branch 3 -->
+  <rect x="460" y="120" width="200" height="56" rx="8" fill="#fff7ed" stroke="#d97706" stroke-width="1.5"/>
+  <text x="560" y="145" font-size="12" fill="#7c2d12" text-anchor="middle">존재하지 않는</text>
+  <text x="560" y="163" font-size="12" fill="#7c2d12" text-anchor="middle">예약 번호로 접근했을 때</text>
+  <line x1="560" y1="176" x2="560" y2="204" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+  <rect x="460" y="206" width="200" height="80" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="560" y="238" font-size="12" fill="#334155" text-anchor="middle">"그런 신청은 없습니다"</text>
+  <text x="560" y="256" font-size="12" fill="#334155" text-anchor="middle">안내 화면 표시</text>
+  <text x="560" y="274" font-size="12" fill="#334155" text-anchor="middle">(404 페이지)</text>
+
+  <!-- branch 4 -->
+  <rect x="680" y="120" width="200" height="56" rx="8" fill="#fff7ed" stroke="#d97706" stroke-width="1.5"/>
+  <text x="780" y="145" font-size="12" fill="#7c2d12" text-anchor="middle">프런트-백엔드 사이</text>
+  <text x="780" y="163" font-size="12" fill="#7c2d12" text-anchor="middle">키 값이 서로 안 맞을 때</text>
+  <line x1="780" y1="176" x2="780" y2="204" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+  <rect x="680" y="206" width="200" height="80" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="780" y="232" font-size="12" fill="#334155" text-anchor="middle">별도 처리 없이 요청</text>
+  <text x="780" y="250" font-size="12" fill="#334155" text-anchor="middle">실패를 그대로 보여줌</text>
+  <text x="780" y="268" font-size="12" fill="#334155" text-anchor="middle">(설정 오류로 간주)</text>
+
+  <text x="450" y="330" font-size="12" fill="#64748b" text-anchor="middle">네 번째 상황은 서버 설정을 잘못했을 때만 벌어져야 하고, 정상적으로 운영 중이면 발생하지 않아야 함</text>
+</svg>

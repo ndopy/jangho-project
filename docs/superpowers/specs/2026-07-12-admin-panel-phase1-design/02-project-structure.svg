@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 340" font-family="'Segoe UI', Arial, sans-serif">
+  <rect width="780" height="340" fill="#ffffff"/>
+
+  <text x="390" y="32" font-size="16" font-weight="700" fill="#0f172a" text-anchor="middle">관리자 화면을 어디에 만들까?</text>
+
+  <!-- chosen option -->
+  <rect x="30" y="60" width="340" height="250" rx="10" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+  <rect x="30" y="60" width="340" height="36" rx="10" fill="#10b981"/>
+  <rect x="30" y="78" width="340" height="18" fill="#10b981"/>
+  <text x="200" y="84" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">채택: 기존 프런트엔드 안에 /admin 추가</text>
+
+  <text x="55" y="120" font-size="13" fill="#065f46">- 지금 쓰는 apps/frontend 프로젝트</text>
+  <text x="55" y="140" font-size="13" fill="#065f46">  그대로, 경로만 /admin으로 분리</text>
+  <text x="55" y="168" font-size="13" fill="#065f46">- 기존 서버 호출 방식(lib/api.ts)</text>
+  <text x="55" y="188" font-size="13" fill="#065f46">  그대로 재사용 가능</text>
+  <text x="55" y="216" font-size="13" fill="#065f46">- 관리자 1명만 쓰는 규모에 맞는</text>
+  <text x="55" y="236" font-size="13" fill="#065f46">  가장 단순한 구성</text>
+  <text x="55" y="264" font-size="13" fill="#065f46">- 새 프로젝트를 따로 만들고</text>
+  <text x="55" y="284" font-size="13" fill="#065f46">  운영/배포할 필요 없음</text>
+
+  <!-- rejected option -->
+  <rect x="410" y="60" width="340" height="250" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <rect x="410" y="60" width="340" height="36" rx="10" fill="#94a3b8"/>
+  <rect x="410" y="78" width="340" height="18" fill="#94a3b8"/>
+  <text x="580" y="84" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">기각: 별도 관리자 프로젝트 신설</text>
+
+  <text x="435" y="120" font-size="13" fill="#334155">- 새 Next.js(혹은 다른) 프로젝트를</text>
+  <text x="435" y="140" font-size="13" fill="#334155">  새로 만들어야 함</text>
+  <text x="435" y="168" font-size="13" fill="#334155">- 별도 배포·인증 관리 필요</text>
+  <text x="435" y="196" font-size="13" fill="#334155">- 지금 규모에는 관리 비용이</text>
+  <text x="435" y="216" font-size="13" fill="#334155">  얻는 이득보다 큼</text>
+  <text x="435" y="250" font-size="12" fill="#64748b">(나중에 관리자 인증이 완전히</text>
+  <text x="435" y="268" font-size="12" fill="#64748b">달라지거나 배포 주기를 분리하고</text>
+  <text x="435" y="286" font-size="12" fill="#64748b">싶어지면 그때 다시 검토)</text>
+</svg>
