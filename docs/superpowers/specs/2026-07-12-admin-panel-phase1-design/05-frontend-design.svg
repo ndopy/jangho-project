@@ -14,21 +14,18 @@
 
   <rect x="40" y="184" width="370" height="100" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1"/>
   <text x="56" y="206" font-size="13" font-weight="700" fill="#1e3a8a">session.ts (신규)</text>
-  <text x="56" y="226" font-size="12" fill="#334155">로그인 정보를 만들고, 그 정보가</text>
-  <text x="56" y="244" font-size="12" fill="#334155">진짜인지 확인하는 코드</text>
-  <text x="56" y="264" font-size="12" fill="#334155">(middleware.ts와 로그인/로그아웃이 같이 씀)</text>
+  <text x="56" y="228" font-size="12" fill="#334155">로그인 정보를 만들고, 그 정보가 진짜인지 확인하는 코드</text>
+  <text x="56" y="250" font-size="12" fill="#334155">(middleware.ts와 로그인/로그아웃이 같이 씀)</text>
 
   <rect x="40" y="296" width="370" height="90" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1"/>
   <text x="56" y="318" font-size="13" font-weight="700" fill="#1e3a8a">api.ts (수정)</text>
-  <text x="56" y="338" font-size="12" fill="#334155">getReservations(),</text>
-  <text x="56" y="356" font-size="12" fill="#334155">getReservationById(id) 추가</text>
-  <text x="56" y="374" font-size="12" fill="#334155">(x-admin-key 헤더를 붙여서 백엔드 호출)</text>
+  <text x="56" y="340" font-size="12" fill="#334155">getReservations(), getReservationById(id) 추가</text>
+  <text x="56" y="362" font-size="12" fill="#334155">(x-admin-key 헤더를 붙여서 백엔드 호출)</text>
 
   <rect x="40" y="398" width="370" height="90" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1"/>
   <text x="56" y="420" font-size="13" font-weight="700" fill="#1e3a8a">actions.ts (수정)</text>
-  <text x="56" y="440" font-size="12" fill="#334155">loginAdmin(formData) — 비밀번호</text>
-  <text x="56" y="458" font-size="12" fill="#334155">확인 후 쿠키 발급</text>
-  <text x="56" y="476" font-size="12" fill="#334155">logoutAdmin() — 쿠키 삭제</text>
+  <text x="56" y="444" font-size="12" fill="#334155">loginAdmin() — 비밀번호 확인 후 쿠키 발급</text>
+  <text x="56" y="466" font-size="12" fill="#334155">logoutAdmin() — 쿠키 삭제</text>
 
   <!-- app card -->
   <rect x="450" y="140" width="430" height="400" rx="10" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
@@ -51,7 +48,6 @@
   <text x="486" y="428" font-size="12" fill="#334155">예약 신청 상세 (없으면 404)</text>
 
   <rect x="470" y="456" width="390" height="70" rx="8" fill="#f0fdf4" stroke="#6ee7b7" stroke-width="1" stroke-dasharray="4,3"/>
-  <text x="486" y="478" font-size="12" fill="#065f46">로그인 안 한 상태로 이 페이지들에</text>
-  <text x="486" y="496" font-size="12" fill="#065f46">직접 들어오면 middleware.ts가</text>
-  <text x="486" y="514" font-size="12" fill="#065f46">/admin/login으로 돌려보냄</text>
+  <text x="486" y="488" font-size="12" fill="#065f46">로그인 안 한 상태로 이 페이지들에 직접 들어오면</text>
+  <text x="486" y="508" font-size="12" fill="#065f46">middleware.ts가 /admin/login으로 돌려보냄</text>
 </svg>
