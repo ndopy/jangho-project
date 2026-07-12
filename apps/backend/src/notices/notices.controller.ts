@@ -5,7 +5,9 @@ import {
   Body,
   Param,
   ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
+import { AdminKeyGuard } from '../common/guards/admin-key.guard';
 import { NoticesService } from './notices.service';
 import { CreateNoticeDto } from './dto/create-notice.dto';
 
@@ -13,6 +15,7 @@ import { CreateNoticeDto } from './dto/create-notice.dto';
 export class NoticesController {
   constructor(private readonly noticesService: NoticesService) {}
 
+  @UseGuards(AdminKeyGuard)
   @Post()
   create(@Body() createNoticeDto: CreateNoticeDto) {
     return this.noticesService.create(createNoticeDto);

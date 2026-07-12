@@ -5,7 +5,9 @@ import {
   Body,
   Param,
   ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
+import { AdminKeyGuard } from '../common/guards/admin-key.guard';
 import { AccommodationsService } from './accommodations.service';
 import { CreateAccommodationDto } from './dto/create-accommodation.dto';
 
@@ -13,6 +15,7 @@ import { CreateAccommodationDto } from './dto/create-accommodation.dto';
 export class AccommodationsController {
   constructor(private readonly accommodationsService: AccommodationsService) {}
 
+  @UseGuards(AdminKeyGuard)
   @Post()
   create(@Body() createAccommodationDto: CreateAccommodationDto) {
     return this.accommodationsService.create(createAccommodationDto);
