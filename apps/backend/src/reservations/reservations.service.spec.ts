@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { NotFoundException } from '@nestjs/common';
 import {
   createMockRepository,
   MockRepository,
@@ -46,5 +47,36 @@ describe('ReservationsService', () => {
     expect(repository.create).toHaveBeenCalledWith(dto);
     expect(repository.save).toHaveBeenCalledWith(created);
     expect(result).toEqual(created);
+  });
+
+  it('예약 신청 목록을 최신순으로 조회한다', async () => {
+    const reservations = [
+      { id: 2, applicantName: '김철수' },
+      { id: 1, applicantName: '홍길동' },
+    ];
+    repository.find!.mockResolvedValue(reservations);
+
+    const result = await service.findAll();
+
+    expect(repository.find).toHaveBeenCalledWith({
+      order: { createdAt: 'DESC' },
+    });
+    expect(result).toEqual(reservations);
+  });
+
+  it('id로 예약 신청 하나를 조회한다', async () => {
+    const reservation = { id: 1, applicantName: '홍길동' };
+    repository.findOne!.mockResolvedValue(reservation);
+
+    const result = await service.findOne(1);
+
+    expect(repository.findOne).toHaveBeenCalledWith({ where: { id: 1 } });
+    expect(result).toEqual(reservation);
+  });
+
+  it('존재하지 않는 id로 조회하면 NotFoundException을 던진다', async () => {
+    repository.findOne!.mockResolvedValue(null);
+
+    await expect(service.findOne(999)).rejects.toThrow(NotFoundException);
   });
 });
