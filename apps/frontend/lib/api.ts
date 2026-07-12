@@ -125,6 +125,40 @@ async function apiGetOrNull<T>(path: string): Promise<T | null> {
   return res.json() as Promise<T>;
 }
 
+function adminHeaders(): HeadersInit {
+  return { 'x-admin-key': process.env.ADMIN_API_KEY ?? '' };
+}
+
+async function apiGetAdmin<T>(path: string): Promise<T> {
+  const res = await fetch(`${API_BASE_URL}${path}`, {
+    cache: 'no-store',
+    headers: adminHeaders(),
+  });
+
+  if (!res.ok) {
+    throw new Error(`관리자 API 요청 실패: ${path} (${res.status})`);
+  }
+
+  return res.json() as Promise<T>;
+}
+
+async function apiGetAdminOrNull<T>(path: string): Promise<T | null> {
+  const res = await fetch(`${API_BASE_URL}${path}`, {
+    cache: 'no-store',
+    headers: adminHeaders(),
+  });
+
+  if (res.status === 404) {
+    return null;
+  }
+
+  if (!res.ok) {
+    throw new Error(`관리자 API 요청 실패: ${path} (${res.status})`);
+  }
+
+  return res.json() as Promise<T>;
+}
+
 export function getExperiences() {
   return apiGet<ExperienceProgram[]>('/experiences');
 }
@@ -159,4 +193,12 @@ export function getMudflatForecasts() {
 
 export function getMudflatForecastByDate(date: string) {
   return apiGetOrNull<MudflatForecast>(`/mudflat-forecast/${date}`);
+}
+
+export function getReservations() {
+  return apiGetAdmin<Reservation[]>('/reservations');
+}
+
+export function getReservationById(id: number) {
+  return apiGetAdminOrNull<Reservation>(`/reservations/${id}`);
 }
