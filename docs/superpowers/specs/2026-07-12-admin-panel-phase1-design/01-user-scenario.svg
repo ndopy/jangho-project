@@ -20,20 +20,17 @@
 
   <!-- ② -->
   <rect x="40" y="130" width="300" height="70" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
-  <text x="190" y="160" font-size="13" fill="#334155" text-anchor="middle">② 로그인 안 됨</text>
-  <text x="190" y="180" font-size="13" fill="#334155" text-anchor="middle">로그인 페이지로 이동</text>
+  <text x="190" y="170" font-size="13" fill="#334155" text-anchor="middle">② 로그인 페이지로 리다이렉트</text>
   <line x1="190" y1="200" x2="190" y2="240" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
 
   <!-- ③ -->
   <rect x="40" y="240" width="300" height="70" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
-  <text x="190" y="270" font-size="13" fill="#1e3a8a" text-anchor="middle">③ 비밀번호 입력 후</text>
-  <text x="190" y="290" font-size="13" fill="#1e3a8a" text-anchor="middle">로그인 클릭</text>
+  <text x="190" y="280" font-size="13" fill="#1e3a8a" text-anchor="middle">③ 비밀번호 입력 후 로그인 클릭</text>
   <line x1="190" y1="310" x2="190" y2="350" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
 
   <!-- decision ④ -->
   <polygon points="190,350 340,405 190,460 40,405" fill="#fff7ed" stroke="#d97706" stroke-width="1.5"/>
-  <text x="190" y="400" font-size="13" fill="#7c2d12" text-anchor="middle">④ 비밀번호가</text>
-  <text x="190" y="418" font-size="13" fill="#7c2d12" text-anchor="middle">맞는가?</text>
+  <text x="190" y="410" font-size="13" fill="#7c2d12" text-anchor="middle">④ 비밀번호가 맞는가?</text>
 
   <!-- no branch: diamond right -> error box -->
   <line x1="340" y1="405" x2="420" y2="405" stroke="#ef4444" stroke-width="2" marker-end="url(#ared)"/>
@@ -58,14 +55,12 @@
 
   <!-- ⑥ -->
   <rect x="40" y="610" width="300" height="70" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
-  <text x="190" y="640" font-size="13" fill="#334155" text-anchor="middle">⑥ 예약 신청 목록</text>
-  <text x="190" y="660" font-size="13" fill="#334155" text-anchor="middle">페이지로 이동</text>
+  <text x="190" y="650" font-size="13" fill="#334155" text-anchor="middle">⑥ 예약 신청 목록 페이지로 이동</text>
   <line x1="190" y1="680" x2="190" y2="720" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
 
   <!-- ⑦ -->
   <rect x="40" y="720" width="300" height="70" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
-  <text x="190" y="750" font-size="13" fill="#334155" text-anchor="middle">⑦ 목록에서</text>
-  <text x="190" y="770" font-size="13" fill="#334155" text-anchor="middle">한 줄 클릭</text>
+  <text x="190" y="760" font-size="13" fill="#334155" text-anchor="middle">⑦ 목록에서 한 줄 클릭</text>
 
   <!-- split: straight down to detail, straight branch out to 404 -->
   <line x1="190" y1="790" x2="190" y2="830" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
@@ -95,5 +90,5 @@
 
   <!-- loop back to ②, far-right channel, all right angles -->
   <path d="M 340,1085 L 800,1085 L 800,115 L 190,115 L 190,130" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#a)"/>
-  <text x="495" y="105" font-size="12" fill="#64748b" text-anchor="middle">다시 로그인 페이지로</text>
+  <text x="570" y="1075" font-size="12" fill="#64748b" text-anchor="middle">다시 로그인 페이지로</text>
 </svg>
