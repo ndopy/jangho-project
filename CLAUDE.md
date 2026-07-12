@@ -28,7 +28,9 @@ npm install
 docker compose up -d
 ```
 
-백엔드는 `apps/backend/.env`(git에 커밋되지 않음 — 직접 생성해야 함)에서 아래 키를 읽음: `DB_HOST`, `DB_PORT`, `DB_USERNAME`, `DB_PASSWORD`, `DB_DATABASE`, `PORT`, `MUDFLAT_API_KEY`, `MUDFLAT_REFERENCE_VILLAGE`. 로컬 개발용 DB 값은 루트 `docker-compose.yml`에 정의된 것과 동일하게 맞추면 됨. `PORT`는 프론트엔드가 3000번을 쓰므로 `4000`으로 설정 (프론트엔드는 `NEXT_PUBLIC_API_URL`로 백엔드 주소를 찾으며 기본값이 `http://localhost:4000`). `MUDFLAT_API_KEY`는 data.go.kr에서 발급받은 실제 인증키이므로 절대 커밋하지 말 것.
+백엔드는 `apps/backend/.env`(git에 커밋되지 않음 — 직접 생성해야 함)에서 아래 키를 읽음: `DB_HOST`, `DB_PORT`, `DB_USERNAME`, `DB_PASSWORD`, `DB_DATABASE`, `PORT`, `MUDFLAT_API_KEY`, `MUDFLAT_REFERENCE_VILLAGE`, `ADMIN_API_KEY`. 로컬 개발용 DB 값은 루트 `docker-compose.yml`에 정의된 것과 동일하게 맞추면 됨. `PORT`는 프론트엔드가 3000번을 쓰므로 `4000`으로 설정 (프론트엔드는 `NEXT_PUBLIC_API_URL`로 백엔드 주소를 찾으며 기본값이 `http://localhost:4000`). `MUDFLAT_API_KEY`는 data.go.kr에서 발급받은 실제 인증키이므로 절대 커밋하지 말 것. `ADMIN_API_KEY`는 관리자 패널 전용 엔드포인트를 보호하는 `AdminKeyGuard`(`src/common/guards/admin-key.guard.ts`)가 요청 헤더 `x-admin-key`와 비교하는 값 — 프런트엔드 `apps/frontend/.env.local`의 `ADMIN_API_KEY`와 반드시 동일해야 함. 이 값이 없으면 관리자 API가 항상 401을 반환함.
+
+프런트엔드는 관리자 패널(`/admin`) 관련 기능을 위해 `apps/frontend/.env.local`(git에 커밋되지 않음 — 직접 생성해야 함)에서 `ADMIN_PASSWORD`(관리자 로그인 비밀번호), `ADMIN_API_KEY`(위 백엔드 값과 동일), `SESSION_SECRET`(로그인 세션 JWT 서명용, 길고 무작위한 문자열)을 읽음. 이 파일이 없으면 `/admin` 로그인과 백엔드 호출이 모두 실패함.
 
 `AppModule`(`apps/backend/src/app.module.ts`)이 `TypeOrmModule.forRootAsync`를 `synchronize: true`, `autoLoadEntities: true`로 설정해둬서, 엔티티 기준으로 스키마가 부팅 시 자동 생성/변경됨. 이건 개발 환경 전용 설정이니 프로덕션 설정에는 `synchronize: true`를 절대 가져가면 안 됨.
 
