@@ -1,0 +1,65 @@
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+  <rect width="900" height="560" fill="#ffffff"/>
+  <defs>
+    <marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#5b6b7d" />
+    </marker>
+    <marker id="arA" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#c9790c" />
+    </marker>
+    <marker id="arG" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#1f9d6c" />
+    </marker>
+  </defs>
+
+  <text x="230" y="34" font-size="14" font-weight="700" fill="#1b2634" text-anchor="middle">.catch(() =&gt; []) 를 추가한다면</text>
+  <text x="670" y="34" font-size="14" font-weight="700" fill="#1b2634" text-anchor="middle">지금처럼 .catch() 없이 둔다면</text>
+
+  <rect x="80" y="52" width="300" height="60" rx="8" fill="#f5f7fa" stroke="#dbe2ea" stroke-width="1.5"/>
+  <text x="230" y="87" font-size="13" fill="#1b2634" text-anchor="middle">백엔드가 꺼져 있거나 키 설정이 틀렸다</text>
+
+  <rect x="520" y="52" width="300" height="60" rx="8" fill="#f5f7fa" stroke="#dbe2ea" stroke-width="1.5"/>
+  <text x="670" y="87" font-size="13" fill="#1b2634" text-anchor="middle">백엔드가 꺼져 있거나 키 설정이 틀렸다</text>
+
+  <line x1="230" y1="112" x2="230" y2="150" stroke="#5b6b7d" stroke-width="2" marker-end="url(#ar)"/>
+  <line x1="670" y1="112" x2="670" y2="150" stroke="#5b6b7d" stroke-width="2" marker-end="url(#ar)"/>
+
+  <rect x="80" y="150" width="300" height="60" rx="8" fill="#f5f7fa" stroke="#dbe2ea" stroke-width="1.5"/>
+  <text x="230" y="185" font-size="13" fill="#1b2634" text-anchor="middle">요청이 실패한다</text>
+
+  <rect x="520" y="150" width="300" height="60" rx="8" fill="#f5f7fa" stroke="#dbe2ea" stroke-width="1.5"/>
+  <text x="670" y="185" font-size="13" fill="#1b2634" text-anchor="middle">요청이 실패한다</text>
+
+  <line x1="230" y1="210" x2="230" y2="248" stroke="#c9790c" stroke-width="2" marker-end="url(#arA)"/>
+  <line x1="670" y1="210" x2="670" y2="248" stroke="#1f9d6c" stroke-width="2" marker-end="url(#arG)"/>
+
+  <rect x="80" y="248" width="300" height="60" rx="8" fill="#fbf0dd" stroke="#c9790c" stroke-width="1.5"/>
+  <text x="230" y="283" font-size="13" fill="#8a5406" text-anchor="middle">catch가 실패를 붙잡아 빈 배열로 바꾼다</text>
+
+  <rect x="520" y="248" width="300" height="60" rx="8" fill="#e6f6ee" stroke="#1f9d6c" stroke-width="1.5"/>
+  <text x="670" y="283" font-size="13" fill="#0d6b47" text-anchor="middle">실패가 그대로 페이지까지 전달된다</text>
+
+  <line x1="230" y1="308" x2="230" y2="346" stroke="#c9790c" stroke-width="2" marker-end="url(#arA)"/>
+  <line x1="670" y1="308" x2="670" y2="346" stroke="#1f9d6c" stroke-width="2" marker-end="url(#arG)"/>
+
+  <rect x="80" y="346" width="300" height="70" rx="8" fill="#fbf0dd" stroke="#c9790c" stroke-width="2"/>
+  <text x="230" y="376" font-size="13" fill="#8a5406" text-anchor="middle">화면에</text>
+  <text x="230" y="396" font-size="13" fill="#8a5406" text-anchor="middle">"접수된 예약 신청이 없습니다" 표시</text>
+
+  <rect x="520" y="346" width="300" height="70" rx="8" fill="#e6f6ee" stroke="#1f9d6c" stroke-width="2"/>
+  <text x="670" y="376" font-size="13" fill="#0d6b47" text-anchor="middle">화면에</text>
+  <text x="670" y="396" font-size="13" fill="#0d6b47" text-anchor="middle">에러 화면 표시</text>
+
+  <line x1="230" y1="416" x2="230" y2="446" stroke="#c9790c" stroke-width="2" marker-end="url(#arA)"/>
+  <line x1="670" y1="416" x2="670" y2="446" stroke="#1f9d6c" stroke-width="2" marker-end="url(#arG)"/>
+
+  <rect x="60" y="446" width="340" height="80" rx="8" fill="#ffffff" stroke="#c9790c" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <text x="230" y="476" font-size="12.5" fill="#1b2634" text-anchor="middle">관리자는 이걸 보고</text>
+  <text x="230" y="496" font-size="12.5" fill="#1b2634" text-anchor="middle">정말 신청이 없다고 오해할 수 있다</text>
+
+  <rect x="500" y="446" width="340" height="80" rx="8" fill="#ffffff" stroke="#1f9d6c" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <text x="670" y="476" font-size="12.5" fill="#1b2634" text-anchor="middle">관리자는 뭔가 잘못됐다는 걸</text>
+  <text x="670" y="496" font-size="12.5" fill="#1b2634" text-anchor="middle">바로 알아챌 수 있다</text>
+
+  <text x="450" y="546" font-size="13" font-weight="700" fill="#1b2634" text-anchor="middle">그래서 지금 상태(.catch() 없음)를 유지하는 게 더 낫다</text>
+</svg>

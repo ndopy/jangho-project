@@ -1,0 +1,50 @@
+<svg viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+  <rect width="900" height="620" fill="#ffffff"/>
+  <defs>
+    <marker id="ar2" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#5b6b7d" />
+    </marker>
+  </defs>
+
+  <rect x="40" y="20" width="390" height="150" rx="10" fill="#fbf0dd" stroke="#c9790c" stroke-width="1.5"/>
+  <text x="235" y="46" font-size="13" font-weight="700" fill="#8a5406" text-anchor="middle">비밀번호·키를 비교하는 코드</text>
+  <text x="235" y="66" font-size="12" font-family="ui-monospace, Menlo, monospace" fill="#8a5406" text-anchor="middle">providedKey !== expectedKey</text>
+  <text x="60" y="92" font-size="12" fill="#1b2634">문자를 하나씩 비교하다가</text>
+  <text x="60" y="110" font-size="12" fill="#1b2634">다른 문자가 나오면 그 자리에서 멈춘다</text>
+  <text x="60" y="138" font-size="12" fill="#8a5406">이론상: 응답 시간을 정밀히 재면</text>
+  <text x="60" y="156" font-size="12" fill="#8a5406">어디까지 맞았는지 추측할 수 있다 (타이밍 공격)</text>
+
+  <rect x="470" y="20" width="390" height="150" rx="10" fill="#fbf0dd" stroke="#c9790c" stroke-width="1.5"/>
+  <text x="665" y="46" font-size="13" font-weight="700" fill="#8a5406" text-anchor="middle">JWT 서명을 확인하는 코드</text>
+  <text x="665" y="66" font-size="12" font-family="ui-monospace, Menlo, monospace" fill="#8a5406" text-anchor="middle">jwtVerify(token, key)</text>
+  <text x="490" y="92" font-size="12" fill="#1b2634">어떤 서명 알고리즘을 쓸지</text>
+  <text x="490" y="110" font-size="12" fill="#1b2634">지정하지 않고 확인한다</text>
+  <text x="490" y="138" font-size="12" fill="#8a5406">이론상: 알고리즘을 다른 걸로 속여서</text>
+  <text x="490" y="156" font-size="12" fill="#8a5406">검증을 우회할 수 있다 (알고리즘 혼동 공격)</text>
+
+  <line x1="235" y1="170" x2="235" y2="200" stroke="#5b6b7d" stroke-width="2" marker-end="url(#ar2)"/>
+  <line x1="665" y1="170" x2="665" y2="200" stroke="#5b6b7d" stroke-width="2" marker-end="url(#ar2)"/>
+  <line x1="235" y1="200" x2="450" y2="200" stroke="#5b6b7d" stroke-width="2"/>
+  <line x1="665" y1="200" x2="450" y2="200" stroke="#5b6b7d" stroke-width="2"/>
+  <line x1="450" y1="200" x2="450" y2="222" stroke="#5b6b7d" stroke-width="2" marker-end="url(#ar2)"/>
+
+  <rect x="80" y="222" width="740" height="150" rx="10" fill="#ffffff" stroke="#dbe2ea" stroke-width="1.5"/>
+  <text x="450" y="248" font-size="13" font-weight="700" fill="#1b2634" text-anchor="middle">그런데 실제 공격이 통하려면</text>
+  <text x="110" y="276" font-size="12.5" fill="#1b2634">- 응답 시간을 마이크로초 단위로 정밀하게 잴 수 있어야 함</text>
+  <text x="110" y="300" font-size="12.5" fill="#1b2634">- 네트워크 지연 흔들림이 거의 없어야 하고, 수천 번 반복 요청도 필요함</text>
+  <text x="110" y="324" font-size="12.5" fill="#1b2634">- 이 프로젝트는 대칭키 하나만 쓰고 있어서,</text>
+  <text x="130" y="346" font-size="12.5" fill="#1b2634">알고리즘을 속이는 공격 자체가 성립하지 않음</text>
+
+  <line x1="450" y1="372" x2="450" y2="402" stroke="#5b6b7d" stroke-width="2" marker-end="url(#ar2)"/>
+
+  <rect x="180" y="402" width="540" height="90" rx="10" fill="#e8effe" stroke="#2f6fed" stroke-width="1.5"/>
+  <text x="450" y="428" font-size="13" font-weight="700" fill="#1b2634" text-anchor="middle">지금 이 프로젝트 상황</text>
+  <text x="450" y="452" font-size="12.5" fill="#1b2634" text-anchor="middle">아직 배포 전, 로컬 개발 환경</text>
+  <text x="450" y="474" font-size="12.5" fill="#1b2634" text-anchor="middle">관리자 1명만 쓰는 소규모 마을 사이트</text>
+
+  <line x1="450" y1="492" x2="450" y2="522" stroke="#1f9d6c" stroke-width="2" marker-end="url(#ar2)"/>
+
+  <rect x="140" y="522" width="620" height="80" rx="10" fill="#e6f6ee" stroke="#1f9d6c" stroke-width="2"/>
+  <text x="450" y="552" font-size="13" font-weight="700" fill="#0d6b47" text-anchor="middle">그래서 지금 당장 고칠 필요는 없다</text>
+  <text x="450" y="576" font-size="12.5" fill="#0d6b47" text-anchor="middle">나중에 실제 서버에 배포할 때 참고할 메모 정도</text>
+</svg>
