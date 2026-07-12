@@ -1,0 +1,35 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+  <rect width="900" height="420" fill="#ffffff"/>
+  <defs>
+    <marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#334155" />
+    </marker>
+  </defs>
+
+  <rect x="340" y="20" width="220" height="70" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="450" y="50" font-size="13" font-weight="700" fill="#334155" text-anchor="middle">대기 (pending)</text>
+  <text x="450" y="70" font-size="12" fill="#334155" text-anchor="middle">신청 접수 직후 기본값</text>
+
+  <line x1="450" y1="90" x2="450" y2="150" stroke="#334155" stroke-width="2"/>
+  <line x1="450" y1="150" x2="210" y2="150" stroke="#334155" stroke-width="2"/>
+  <line x1="450" y1="150" x2="690" y2="150" stroke="#334155" stroke-width="2"/>
+  <line x1="210" y1="150" x2="210" y2="218" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="690" y1="150" x2="690" y2="218" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+
+  <text x="210" y="140" font-size="12" fill="#065f46" text-anchor="middle">"확인으로 변경" 클릭</text>
+  <text x="690" y="140" font-size="12" fill="#92400e" text-anchor="middle">"보류로 변경" 클릭</text>
+
+  <rect x="100" y="220" width="220" height="70" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="210" y="250" font-size="13" font-weight="700" fill="#065f46" text-anchor="middle">확인 (confirmed)</text>
+  <text x="210" y="270" font-size="12" fill="#065f46" text-anchor="middle">관리자가 전화로 확인 완료</text>
+
+  <rect x="580" y="220" width="220" height="70" rx="8" fill="#fff7ed" stroke="#d97706" stroke-width="1.5"/>
+  <text x="690" y="250" font-size="13" font-weight="700" fill="#92400e" text-anchor="middle">보류 (hold)</text>
+  <text x="690" y="270" font-size="12" fill="#92400e" text-anchor="middle">일정 조율 등으로 보류 중</text>
+
+  <line x1="320" y1="248" x2="578" y2="248" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="578" y1="266" x2="320" y2="266" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+
+  <text x="450" y="330" font-size="12.5" fill="#1b2634" text-anchor="middle">확인과 보류 사이는 버튼을 눌러 언제든 서로 다시 바꿀 수 있다</text>
+  <text x="450" y="360" font-size="12.5" fill="#1b2634" text-anchor="middle">(대기로 되돌리는 버튼은 없다 — 이번 범위 밖)</text>
+</svg>

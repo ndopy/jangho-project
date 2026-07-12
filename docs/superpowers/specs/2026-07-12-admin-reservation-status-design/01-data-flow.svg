@@ -1,0 +1,42 @@
+<svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+  <rect width="900" height="260" fill="#ffffff"/>
+  <defs>
+    <marker id="a2" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#334155" />
+    </marker>
+  </defs>
+
+  <rect x="20" y="20" width="260" height="80" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="150" y="52" font-size="12.5" fill="#334155" text-anchor="middle">관리자가 상세 페이지에서</text>
+  <text x="150" y="72" font-size="12.5" fill="#334155" text-anchor="middle">"확인으로 변경" 버튼 클릭</text>
+
+  <line x1="280" y1="60" x2="298" y2="60" stroke="#334155" stroke-width="2" marker-end="url(#a2)"/>
+
+  <rect x="300" y="20" width="260" height="80" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="430" y="65" font-size="12.5" fill="#334155" text-anchor="middle">updateReservationStatusAction 호출</text>
+
+  <line x1="560" y1="60" x2="578" y2="60" stroke="#334155" stroke-width="2" marker-end="url(#a2)"/>
+
+  <rect x="580" y="20" width="260" height="80" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="710" y="52" font-size="12.5" fill="#334155" text-anchor="middle">백엔드에 PATCH 요청</text>
+  <text x="710" y="72" font-size="12.5" fill="#334155" text-anchor="middle">(x-admin-key 헤더 포함)</text>
+
+  <line x1="710" y1="100" x2="710" y2="120" stroke="#334155" stroke-width="2"/>
+  <line x1="710" y1="120" x2="150" y2="120" stroke="#334155" stroke-width="2"/>
+  <line x1="150" y1="120" x2="150" y2="138" stroke="#334155" stroke-width="2" marker-end="url(#a2)"/>
+
+  <rect x="20" y="140" width="260" height="80" rx="8" fill="#fff7ed" stroke="#d97706" stroke-width="1.5"/>
+  <text x="150" y="185" font-size="12.5" fill="#7c2d12" text-anchor="middle">AdminKeyGuard 통과</text>
+
+  <line x1="280" y1="180" x2="298" y2="180" stroke="#334155" stroke-width="2" marker-end="url(#a2)"/>
+
+  <rect x="300" y="140" width="260" height="80" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="430" y="172" font-size="12.5" fill="#334155" text-anchor="middle">DB의 status 값을</text>
+  <text x="430" y="192" font-size="12.5" fill="#334155" text-anchor="middle">confirmed로 갱신</text>
+
+  <line x1="560" y1="180" x2="578" y2="180" stroke="#334155" stroke-width="2" marker-end="url(#a2)"/>
+
+  <rect x="580" y="140" width="260" height="80" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+  <text x="710" y="172" font-size="12.5" fill="#065f46" text-anchor="middle">페이지 재검증 후</text>
+  <text x="710" y="192" font-size="12.5" fill="#065f46" text-anchor="middle">새 상태로 화면 표시</text>
+</svg>
