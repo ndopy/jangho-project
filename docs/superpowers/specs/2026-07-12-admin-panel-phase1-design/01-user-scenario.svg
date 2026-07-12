@@ -43,8 +43,8 @@
   <text x="570" y="400" font-size="13" fill="#7f1d1d" text-anchor="middle">"비밀번호가 틀렸습니다"</text>
   <text x="570" y="420" font-size="13" fill="#7f1d1d" text-anchor="middle">문구 표시, 다시 입력 대기</text>
 
-  <!-- no branch loop back to ③, left-side channel, all right angles -->
-  <path d="M 570,370 L 570,220 L 10,220 L 10,275 L 40,275" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#ared)"/>
+  <!-- no branch loop back to ③'s right edge -->
+  <path d="M 570,370 L 570,275 L 340,275" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#ared)"/>
 
   <!-- yes branch -->
   <line x1="190" y1="460" x2="190" y2="500" stroke="#10b981" stroke-width="2" marker-end="url(#agreen)"/>
@@ -67,19 +67,20 @@
   <text x="190" y="750" font-size="13" fill="#334155" text-anchor="middle">⑦ 목록에서</text>
   <text x="190" y="770" font-size="13" fill="#334155" text-anchor="middle">한 줄 클릭</text>
 
-  <!-- split: down to detail, right-then-down to 404 -->
+  <!-- split: straight down to detail, straight branch out to 404 -->
   <line x1="190" y1="790" x2="190" y2="830" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
-  <path d="M 190,800 L 400,800 L 400,865 L 420,865" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#a)"/>
+  <circle cx="190" cy="810" r="3.5" fill="#334155"/>
+  <line x1="190" y1="810" x2="420" y2="810" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#ared)"/>
 
   <!-- ⑧ detail -->
   <rect x="40" y="830" width="300" height="70" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
   <text x="190" y="860" font-size="13" fill="#334155" text-anchor="middle">⑧ 신청 상세 페이지</text>
   <text x="190" y="880" font-size="13" fill="#334155" text-anchor="middle">(희망일자·인원·요청사항)</text>
 
-  <!-- 404 -->
-  <rect x="420" y="830" width="300" height="70" rx="8" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
-  <text x="570" y="860" font-size="13" fill="#7f1d1d" text-anchor="middle">존재하지 않는 번호면</text>
-  <text x="570" y="880" font-size="13" fill="#7f1d1d" text-anchor="middle">"그런 신청 없음" 안내</text>
+  <!-- 404, vertically centered between ⑦ and ⑧ -->
+  <rect x="420" y="775" width="300" height="70" rx="8" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="570" y="805" font-size="13" fill="#7f1d1d" text-anchor="middle">존재하지 않는 번호면</text>
+  <text x="570" y="825" font-size="13" fill="#7f1d1d" text-anchor="middle">"그런 신청 없음" 안내</text>
 
   <line x1="190" y1="900" x2="190" y2="940" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
 
@@ -94,5 +95,5 @@
 
   <!-- loop back to ②, far-right channel, all right angles -->
   <path d="M 340,1085 L 800,1085 L 800,115 L 190,115 L 190,130" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#a)"/>
-  <text x="800" y="600" font-size="12" fill="#64748b" text-anchor="middle" transform="rotate(-90 800 600)">다시 로그인 페이지로</text>
+  <text x="495" y="105" font-size="12" fill="#64748b" text-anchor="middle">다시 로그인 페이지로</text>
 </svg>
