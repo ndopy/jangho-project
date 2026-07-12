@@ -31,7 +31,8 @@
 
 1. `/admin/login`에서 비밀번호 입력 → Server Action이 `ADMIN_PASSWORD`와 비교
 2. 일치하면 `jose`로 서명한 JWT를 HttpOnly 쿠키로 발급 (7일 만료, `SameSite=Lax`, 프로덕션에서 `Secure`)
-   - `jose`를 쓰는 이유: `middleware.ts`는 Next.js Edge 런타임에서 실행되는데 `jsonwebtoken`은 Edge에서 동작하지 않음
+   - JWT란: "관리자로 로그인함, ~까지 유효"라는 내용을 담은 통행증. 누구나 내용을 읽을 순 있지만 서버만 아는 비밀키로 봉인(서명)해둬서 내용을 조작하면 바로 들통남
+   - `jose`란: 이 봉인을 찍고 확인하는 라이브러리. 더 유명한 `jsonwebtoken` 대신 쓰는 이유는 `middleware.ts`가 일반 Node.js 서버가 아니라 더 가벼운 실행 환경(Edge 런타임)에서 도는데, `jsonwebtoken`은 거기서 동작하지 않기 때문
 3. `middleware.ts`가 `/admin/*`(로그인 페이지 제외) 요청마다 쿠키 서명을 검증. 없거나 만료/위조면 `/admin/login`으로 리다이렉트
 4. 로그아웃 버튼 → 쿠키 삭제 Server Action
 
@@ -42,7 +43,13 @@
 - `GET /reservations` — 목록, `createdAt DESC` 정렬
 - `GET /reservations/:id` — 상세, 없으면 404 (`NotFoundException`)
 
-**보호**: `src/common/`에 재사용 가능한 `AdminKeyGuard`(`CanActivate`) 신설. `ConfigService`로 `ADMIN_API_KEY`를 읽어 요청 헤더 `x-admin-key`와 비교. 두 신규 엔드포인트에 `@UseGuards(AdminKeyGuard)` 적용. 기존 `POST /reservations`(사용자가 신청서 제출할 때 쓰는 공개 엔드포인트)는 그대로 둔다. 이 가드는 2단계(PATCH 상태 변경, 기존 쓰기 API 보호)에서도 재사용한다.
+**보호**: `src/common/`에 재사용 가능한 `AdminKeyGuard` 신설.
+
+- Guard란: NestJS에서 API 요청이 실제 처리 로직(컨트롤러 함수)에 닿기 전에 세우는 문지기. `@UseGuards(AdminKeyGuard)`를 엔드포인트에 붙이면, 요청이 올 때마다 먼저 이 Guard가 "통과시킬지 말지"를 검사하고, 통과 못 하면 실제 로직은 실행조차 안 되고 바로 거부됨
+- `CanActivate`란: Guard가 구현해야 하는 NestJS 표준 규칙(인터페이스) 이름. "이 요청을 활성화(activate)해도 되는가?"를 판단하는 함수 하나만 있으면 됨
+- `AdminKeyGuard`의 판단 로직: `ConfigService`(환경변수를 읽는 NestJS 표준 도구)로 서버에 설정된 `ADMIN_API_KEY` 값을 가져와서, 요청 헤더의 `x-admin-key`와 같은지 비교만 함
+
+두 신규 엔드포인트에 `@UseGuards(AdminKeyGuard)` 적용. 기존 `POST /reservations`(사용자가 신청서 제출할 때 쓰는 공개 엔드포인트)는 그대로 둔다. 이 가드는 2단계(PATCH 상태 변경, 기존 쓰기 API 보호)에서도 재사용한다.
 
 **서비스**: `ReservationsService`에 `findAll()`, `findOne(id)` 추가. 기존 `common/testing/mock-repository.ts` 패턴으로 유닛 테스트 작성 (`findAll`/`findOne`, `AdminKeyGuard`).
 
