@@ -40,6 +40,6 @@
 
 - [x] 온라인 예약 시스템 — "예약 신청서" 수준으로 구현 완료 (2026-07-06). 체험·숙박 상세 페이지에 `ReservationForm`(달력으로 희망 날짜 선택 + 인원/이름/연락처/요청사항) 추가, 백엔드 `reservations` 모듈(`Reservation` 엔티티, POST만 존재)에 저장됨. **날짜별 정원 체크·중복예약 방지 등 재고 관리는 의도적으로 하지 않음** — 사용자가 "재고는 딱히 없어도 된다"고 명시적으로 범위를 좁혀줌. 신청 내역은 관리자 화면이 없어 DB에서 직접 확인 후 전화로 확정하는 방식
 - [x] 예약 목록을 확인할 관리자 패널 1단계 (읽기 전용, 2026-07-12). `/admin/login`(관리자 키 입력 → 세션 쿠키 발급) + `middleware.ts`로 `/admin/*` 보호, `/admin/reservations` 목록·`/admin/reservations/[id]` 상세 페이지 추가. 백엔드는 `x-admin-key` 헤더로 보호된 `GET /reservations`, `GET /reservations/:id` 사용. **상태 변경·쓰기 API 보호(2단계), 콘텐츠(체험/숙박/공지) CRUD 관리자 화면(3단계)은 아직 없음** — 이번 1단계는 신청 내역 조회만 가능
-- [ ] 관리자 패널 2단계: 예약 상태 변경(확정/취소 등) + 쓰기 API(`POST`/`PATCH`/`DELETE`) 관리자 인증 보호
-- [ ] 관리자 패널 3단계: 체험/숙박/공지 콘텐츠 CRUD 관리자 화면
+- [x] 관리자 패널 2단계: 예약 상태 변경(대기/확인/보류) + 쓰기 API(`POST`/`PATCH`/`DELETE`) 관리자 인증 보호. 백엔드에 `Reservation.status`(`pending`/`confirmed`/`hold`, 기본값 `pending`) 컬럼과 `AdminKeyGuard`로 보호된 `PATCH /reservations/:id` 추가, 체험·숙박·공지 생성 API도 `AdminKeyGuard`로 보호. 프런트엔드는 `/admin/reservations` 목록·상세 페이지에 상태 배지(`ReservationStatusBadge`)와 "확인으로 변경"/"보류로 변경" 버튼(`updateReservationStatusAction` Server Action) 추가
+- [ ] 관리자 패널 3단계: 체험/숙박/공지 콘텐츠 CRUD 관리자 화면 (다음 남은 작업)
 - [ ] 체험 후기 / 갤러리
