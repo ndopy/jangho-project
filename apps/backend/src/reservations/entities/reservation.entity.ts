@@ -37,6 +37,9 @@ export class Reservation {
   @Column({ type: 'text', nullable: true })
   message: string | null;
 
+  @Column({ type: 'varchar', default: 'pending' })
+  status: 'pending' | 'confirmed' | 'hold';
+
   @CreateDateColumn()
   createdAt: Date;
 }

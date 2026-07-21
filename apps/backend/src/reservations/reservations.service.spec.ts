@@ -79,4 +79,41 @@ describe('ReservationsService', () => {
 
     await expect(service.findOne(999)).rejects.toThrow(NotFoundException);
   });
+
+  it('예약 상태를 confirmed로 변경한다', async () => {
+    const existing = { id: 1, applicantName: '홍길동', status: 'pending' };
+    const merged = { ...existing, status: 'confirmed' };
+    repository.findOne!.mockResolvedValue(existing);
+    repository.merge!.mockReturnValue(merged);
+    repository.save!.mockResolvedValue(merged);
+
+    const result = await service.updateStatus(1, 'confirmed');
+
+    expect(repository.findOne).toHaveBeenCalledWith({ where: { id: 1 } });
+    expect(repository.merge).toHaveBeenCalledWith(existing, {
+      status: 'confirmed',
+    });
+    expect(repository.save).toHaveBeenCalledWith(merged);
+    expect(result).toEqual(merged);
+  });
+
+  it('예약 상태를 hold로 변경한다', async () => {
+    const existing = { id: 2, applicantName: '김철수', status: 'confirmed' };
+    const merged = { ...existing, status: 'hold' };
+    repository.findOne!.mockResolvedValue(existing);
+    repository.merge!.mockReturnValue(merged);
+    repository.save!.mockResolvedValue(merged);
+
+    const result = await service.updateStatus(2, 'hold');
+
+    expect(result).toEqual(merged);
+  });
+
+  it('존재하지 않는 id로 상태를 변경하면 NotFoundException을 던진다', async () => {
+    repository.findOne!.mockResolvedValue(null);
+
+    await expect(service.updateStatus(999, 'confirmed')).rejects.toThrow(
+      NotFoundException,
+    );
+  });
 });

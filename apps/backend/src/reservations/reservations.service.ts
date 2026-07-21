@@ -37,4 +37,16 @@ export class ReservationsService {
 
     return reservation;
   }
+
+  async updateStatus(
+    id: number,
+    status: 'confirmed' | 'hold',
+  ): Promise<Reservation> {
+    const reservation = await this.findOne(id);
+    const updated = this.reservationsRepository.merge(reservation, {
+      status,
+    });
+
+    return await this.reservationsRepository.save(updated);
+  }
 }
