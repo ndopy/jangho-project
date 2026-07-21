@@ -79,8 +79,11 @@ export type CreateReservationInput = {
   message?: string;
 };
 
+export type ReservationStatus = 'pending' | 'confirmed' | 'hold';
+
 export type Reservation = CreateReservationInput & {
   id: number;
+  status: ReservationStatus;
   createdAt: string;
 };
 
@@ -127,6 +130,23 @@ async function apiGetOrNull<T>(path: string): Promise<T | null> {
 
 function adminHeaders(): HeadersInit {
   return { 'x-admin-key': process.env.ADMIN_API_KEY ?? '' };
+}
+
+async function apiPatchAdmin<TInput, TOutput>(
+  path: string,
+  body: TInput,
+): Promise<TOutput> {
+  const res = await fetch(`${API_BASE_URL}${path}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json', ...adminHeaders() },
+    body: JSON.stringify(body),
+  });
+
+  if (!res.ok) {
+    throw new Error(`관리자 API 요청 실패: ${path} (${res.status})`);
+  }
+
+  return res.json() as Promise<TOutput>;
 }
 
 async function apiGetAdmin<T>(path: string): Promise<T> {
@@ -201,4 +221,11 @@ export function getReservations() {
 
 export function getReservationById(id: number) {
   return apiGetAdminOrNull<Reservation>(`/reservations/${id}`);
+}
+
+export function updateReservationStatus(id: number, status: ReservationStatus) {
+  return apiPatchAdmin<{ status: ReservationStatus }, Reservation>(
+    `/reservations/${id}`,
+    { status },
+  );
 }

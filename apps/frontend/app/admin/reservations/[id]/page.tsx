@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+import { ReservationStatusBadge } from '@/components/reservation-status-badge';
+import { Button } from '@/components/ui/button';
+import { updateReservationStatusAction } from '@/lib/actions';
 import { getReservationById } from '@/lib/api';
 
 export default async function AdminReservationDetailPage({
@@ -24,7 +27,35 @@ export default async function AdminReservationDetailPage({
         ← 예약 신청 목록
       </Link>
 
-      <h1 className="mt-3 text-2xl font-bold">{reservation.itemName}</h1>
+      <div className="mt-3 flex items-center gap-3">
+        <h1 className="text-2xl font-bold">{reservation.itemName}</h1>
+        <ReservationStatusBadge status={reservation.status} />
+      </div>
+
+      <div className="mt-4 flex gap-2">
+        <form
+          action={updateReservationStatusAction.bind(
+            null,
+            reservation.id,
+            'confirmed',
+          )}
+        >
+          <Button type="submit" size="sm">
+            확인으로 변경
+          </Button>
+        </form>
+        <form
+          action={updateReservationStatusAction.bind(
+            null,
+            reservation.id,
+            'hold',
+          )}
+        >
+          <Button type="submit" variant="outline" size="sm">
+            보류로 변경
+          </Button>
+        </form>
+      </div>
 
       <dl className="mt-6 space-y-3 text-sm">
         <div className="flex justify-between gap-4">

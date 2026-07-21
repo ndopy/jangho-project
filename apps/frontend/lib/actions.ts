@@ -1,9 +1,15 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-import { createReservation, type CreateReservationInput } from '@/lib/api';
+import {
+  createReservation,
+  updateReservationStatus,
+  type CreateReservationInput,
+  type ReservationStatus,
+} from '@/lib/api';
 import {
   createSessionToken,
   SESSION_COOKIE_NAME,
@@ -43,4 +49,13 @@ export async function logoutAdmin() {
   const cookieStore = await cookies();
   cookieStore.delete(SESSION_COOKIE_NAME);
   redirect('/admin/login');
+}
+
+export async function updateReservationStatusAction(
+  id: number,
+  status: ReservationStatus,
+) {
+  await updateReservationStatus(id, status);
+  revalidatePath(`/admin/reservations/${id}`);
+  revalidatePath('/admin/reservations');
 }

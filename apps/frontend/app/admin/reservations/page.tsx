@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import { AdminLogoutButton } from '@/components/admin-logout-button';
+import { ReservationStatusBadge } from '@/components/reservation-status-badge';
 import { getReservations } from '@/lib/api';
 
 export default async function AdminReservationsPage() {
@@ -37,6 +38,7 @@ export default async function AdminReservationsPage() {
                 <span className="text-muted-foreground">
                   {reservation.applicantPhone}
                 </span>
+                <ReservationStatusBadge status={reservation.status} />
               </Link>
             </li>
           ))}
