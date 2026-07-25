@@ -67,4 +67,45 @@ describe('NoticesService', () => {
 
     await expect(service.findOne(999)).rejects.toThrow(NotFoundException);
   });
+
+  it('공지사항을 수정한다', async () => {
+    const existing = { id: 1, title: '기존 제목', content: '기존 내용' };
+    const dto = { title: '새 제목' };
+    const merged = { ...existing, ...dto };
+    repository.findOne!.mockResolvedValue(existing);
+    repository.merge!.mockReturnValue(merged);
+    repository.save!.mockResolvedValue(merged);
+
+    const result = await service.update(1, dto);
+
+    expect(repository.findOne).toHaveBeenCalledWith({ where: { id: 1 } });
+    expect(repository.merge).toHaveBeenCalledWith(existing, dto);
+    expect(repository.save).toHaveBeenCalledWith(merged);
+    expect(result).toEqual(merged);
+  });
+
+  it('존재하지 않는 id를 수정하면 NotFoundException을 던진다', async () => {
+    repository.findOne!.mockResolvedValue(null);
+
+    await expect(service.update(999, { title: '새 제목' })).rejects.toThrow(
+      NotFoundException,
+    );
+  });
+
+  it('공지사항을 삭제한다', async () => {
+    const existing = { id: 1, title: '공지 제목' };
+    repository.findOne!.mockResolvedValue(existing);
+    repository.remove!.mockResolvedValue(existing);
+
+    await service.remove(1);
+
+    expect(repository.findOne).toHaveBeenCalledWith({ where: { id: 1 } });
+    expect(repository.remove).toHaveBeenCalledWith(existing);
+  });
+
+  it('존재하지 않는 id를 삭제하면 NotFoundException을 던진다', async () => {
+    repository.findOne!.mockResolvedValue(null);
+
+    await expect(service.remove(999)).rejects.toThrow(NotFoundException);
+  });
 });

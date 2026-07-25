@@ -13,5 +13,6 @@ export function createMockRepository<
     find: jest.fn(),
     findOne: jest.fn(),
     merge: jest.fn(),
+    remove: jest.fn(),
   };
 }
