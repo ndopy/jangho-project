@@ -7,6 +7,7 @@ import request from 'supertest';
 import { App } from 'supertest/types';
 import { AppModule } from './../src/app.module';
 import { Notice } from './../src/notices/entities/notice.entity';
+import { createValidationPipe } from './../src/common/validation-pipe';
 
 describe('NoticesController (e2e)', () => {
   let app: INestApplication<App>;
@@ -19,6 +20,7 @@ describe('NoticesController (e2e)', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    app.useGlobalPipes(createValidationPipe());
     await app.init();
 
     adminKey = app.get(ConfigService).get<string>('ADMIN_API_KEY')!;

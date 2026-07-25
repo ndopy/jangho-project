@@ -61,11 +61,11 @@ npm run sync:mudflat   # 국립해양조사원 갯벌체험지수 API에서 7일
   - `mudflat-forecast` (`MudflatForecast`: date/villageName/experienceStartTime/experienceEndTime/minTemperature/maxTemperature/minWindSpeed/maxWindSpeed/weather/totalIndex) — GET 목록 + GET 상세만 있음(POST 없음, 데이터는 외부 API에서만 채워짐). 국립해양조사원 갯벌체험지수 API 기반. **장호는 이 API의 지원 마을 목록에 없어서 인근 곰소만 "만돌마을"(전북 부안군) 데이터를 참고용으로 대신 씀** — `villageName` 컬럼이 항상 "만돌마을"인 게 정상이며 버그 아님
   - `experiences` (`ExperienceProgram`: name/description/price/**priceOptions**(옵션별 요금 배열)/**notes**(준비물·안내사항)/capacity/durationMinutes/location/contactPhone) — POST + GET 목록 + GET 상세
   - `accommodations` (`Accommodation`: name/type[pension|minbak]/description/**priceOptions**/**checkInTime**/**checkOutTime**/**amenities**/**houseRules**/capacityMin/capacityMax/price/location/contactPhone) — POST + GET 목록 + GET 상세
-  - `notices` (`Notice`: title/content/createdAt) — POST + GET 목록 + GET 상세
+  - `notices` (`Notice`: title/content/createdAt) — POST + GET 목록 + GET 상세 + `AdminKeyGuard`로 보호된 PATCH/DELETE(수정·삭제)
   - `reservations` (`Reservation`: itemType[experience|accommodation]/itemId/itemName(스냅샷)/desiredDate/peopleCount/applicantName/applicantPhone/message) — **POST만 존재**(예약 "신청서" 수준). 날짜별 정원 체크·중복예약 방지 등 재고 관리는 의도적으로 하지 않음. 신청 내역을 볼 관리자 화면이 없어서 DB를 직접 조회해야 함
   - `priceOptions`가 필요한 두 모듈(`experiences`, `accommodations`)은 `src/common/`에 있는 `PriceOption` 타입/`PriceOptionDto`를 공유함 (옵션별·시즌별로 나뉘는 요금을 한 문자열에 뭉쳐 넣지 말고 이 구조를 쓸 것 — 과거에 시도했다가 되돌린 방식임)
 - `src/seed.ts`가 실제 공식 사이트에서 확인한 체험/숙박 데이터와 데모 표시된 공지사항을 DB에 넣어둠. `src/sync-mudflat.ts`가 갯벌체험지수 데이터를 채움 (7일치 예보만 제공하므로 주기적으로 재실행 필요, 스케줄러는 아직 없음).
-- 서비스 레이어 유닛 테스트(`src/**/*.spec.ts`)가 `reservations`를 포함한 7개 서비스 전체에 있음. `src/common/testing/mock-repository.ts`로 TypeORM Repository 목(mock)을 공유하는 패턴이니, 새 서비스를 추가할 때도 이 패턴을 따를 것. 컨트롤러/e2e 테스트는 기본 스펙(`test/app.e2e-spec.ts`)만 있고 아직 확장 안 됨.
+- 서비스 레이어 유닛 테스트(`src/**/*.spec.ts`)가 `reservations`를 포함한 7개 서비스 전체에 있음. `src/common/testing/mock-repository.ts`로 TypeORM Repository 목(mock)을 공유하는 패턴이니, 새 서비스를 추가할 때도 이 패턴을 따를 것. 컨트롤러/e2e 테스트는 기본 스펙(`test/app.e2e-spec.ts`)에 더해 `notices`의 PATCH/DELETE 인증·검증을 다루는 `test/notices.e2e-spec.ts`가 추가됨 — 나머지 모듈의 컨트롤러/e2e 테스트는 아직 없음.
 
 ## 프론트엔드 (`apps/frontend`)
 
