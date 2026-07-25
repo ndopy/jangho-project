@@ -5,8 +5,12 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 import {
+  createNotice,
   createReservation,
+  deleteNotice,
+  updateNotice,
   updateReservationStatus,
+  type CreateNoticeInput,
   type CreateReservationInput,
   type ReservationStatus,
 } from '@/lib/api';
@@ -58,4 +62,21 @@ export async function updateReservationStatusAction(
   await updateReservationStatus(id, status);
   revalidatePath(`/admin/reservations/${id}`);
   revalidatePath('/admin/reservations');
+}
+
+export async function createNoticeAction(input: CreateNoticeInput) {
+  const notice = await createNotice(input);
+  revalidatePath('/admin/notices');
+
+  return { id: notice.id };
+}
+
+export async function updateNoticeAction(id: number, input: CreateNoticeInput) {
+  await updateNotice(id, input);
+  revalidatePath('/admin/notices');
+}
+
+export async function deleteNoticeAction(id: number) {
+  await deleteNotice(id);
+  revalidatePath('/admin/notices');
 }

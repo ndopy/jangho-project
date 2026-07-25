@@ -48,6 +48,11 @@ export type Notice = {
   createdAt: string;
 };
 
+export type CreateNoticeInput = {
+  title: string;
+  content: string;
+};
+
 // 국립해양조사원 갯벌체험지수 API 기반. 장호(고창)는 이 API의 지원 마을 목록에 없어서
 // 같은 곰소만 인근의 "만돌마을"(전북 부안군) 데이터를 참고용으로 대신 쓰고 있음 —
 // villageName이 항상 "만돌마을"로 나오는 게 정상이며 버그가 아님.
@@ -132,6 +137,23 @@ function adminHeaders(): HeadersInit {
   return { 'x-admin-key': process.env.ADMIN_API_KEY ?? '' };
 }
 
+async function apiPostAdmin<TInput, TOutput>(
+  path: string,
+  body: TInput,
+): Promise<TOutput> {
+  const res = await fetch(`${API_BASE_URL}${path}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...adminHeaders() },
+    body: JSON.stringify(body),
+  });
+
+  if (!res.ok) {
+    throw new Error(`관리자 API 요청 실패: ${path} (${res.status})`);
+  }
+
+  return res.json() as Promise<TOutput>;
+}
+
 async function apiPatchAdmin<TInput, TOutput>(
   path: string,
   body: TInput,
@@ -177,6 +199,17 @@ async function apiGetAdminOrNull<T>(path: string): Promise<T | null> {
   }
 
   return res.json() as Promise<T>;
+}
+
+async function apiDeleteAdmin(path: string): Promise<void> {
+  const res = await fetch(`${API_BASE_URL}${path}`, {
+    method: 'DELETE',
+    headers: adminHeaders(),
+  });
+
+  if (!res.ok) {
+    throw new Error(`관리자 API 요청 실패: ${path} (${res.status})`);
+  }
 }
 
 export function getExperiences() {
@@ -228,4 +261,16 @@ export function updateReservationStatus(id: number, status: ReservationStatus) {
     `/reservations/${id}`,
     { status },
   );
+}
+
+export function createNotice(input: CreateNoticeInput) {
+  return apiPostAdmin<CreateNoticeInput, Notice>('/notices', input);
+}
+
+export function updateNotice(id: number, input: CreateNoticeInput) {
+  return apiPatchAdmin<CreateNoticeInput, Notice>(`/notices/${id}`, input);
+}
+
+export function deleteNotice(id: number) {
+  return apiDeleteAdmin(`/notices/${id}`);
 }

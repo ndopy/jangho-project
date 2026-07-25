@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { AdminLogoutButton } from '@/components/admin-logout-button';
+import { AdminNav } from '@/components/admin-nav';
 import { ReservationStatusBadge } from '@/components/reservation-status-badge';
 import { getReservations } from '@/lib/api';
 
@@ -9,10 +9,9 @@ export default async function AdminReservationsPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 md:px-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">예약 신청 목록</h1>
-        <AdminLogoutButton />
-      </div>
+      <AdminNav />
+
+      <h1 className="mt-6 text-2xl font-bold">예약 신청 목록</h1>
 
       {reservations.length === 0 ? (
         <p className="mt-6 text-muted-foreground">
